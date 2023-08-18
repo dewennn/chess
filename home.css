@@ -1,0 +1,35 @@
+body{
+    background-color: rgb(20, 20, 20);
+    color: aliceblue;
+}
+
+div img{
+    height: 80px;
+    width: 80px;
+    object-fit: contain;
+}
+
+.chessboard-position{
+    display: flex;
+    justify-content: center;
+}
+
+.chessboard-container{
+    display: inline-block;
+}
+
+.chessboard{
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px 80px 80px 80px 80px;
+    grid-template-rows: 80px 80px 80px 80px 80px 80px 80px 80px;
+    column-gap: 0px;
+    row-gap: 0px;
+}
+
+.white{
+    background-color: rgb(238,238,210);
+}
+
+.black{
+    background-color: rgb(118,150,86);
+}
