@@ -33,34 +33,37 @@ class Chessboard{
         this._chessPieces.push(new Queen('white', [7, 3]));
         this._chessPieces.push(new King('black', [0, 4]));
         this._chessPieces.push(new King('white', [7, 4]));
-    }
 
-    setChessPieces(){
-        this._chessPieces.forEach((piece) => {
-            const [i, j] = piece.position;
-            document.querySelector(`.box${i}${j}`).innerHTML = `<img src="source/${piece.color}${piece.constructor.name}.png" alt="">`;
-        })
-    }
+        this._setChessPieces = () => {
+            this._chessPieces.forEach((piece) => {
+                const [i, j] = piece.position;
+                document.querySelector(`.box${i}${j}`).innerHTML = `<img src="source/${piece.color}${piece.constructor.name}.png" alt="">`;
+            })
+        };
 
-    displayChessboard(){
-        let html = '';
-        let ctr = 0;
+        this._displayChessboard = () => {
+            let html = '';
+            let ctr = 0;
 
-        for(let i = 0; i < 8; i++){
-            ctr = i % 2 ? 0 : 1;
-            for(let j = 0; j < 8; j++){
-                if(ctr % 2 == 0){
-                    html += `<div class="white box${i}${j}"></div>`;
+            for(let i = 0; i < 8; i++){
+                ctr = i % 2 ? 0 : 1;
+                for(let j = 0; j < 8; j++){
+                    if(ctr % 2 == 0){
+                        html += `<div class="white box${i}${j}"></div>`;
+                    }
+                    else{
+                        html += `<div class="black box${i}${j}"></div>`
+                    }
+                    ctr++;
                 }
-                else{
-                    html += `<div class="black box${i}${j}"></div>`
-                }
-                ctr++;
             }
+        
+            document.querySelector('.chessboard').innerHTML = html;
+            this._setChessPieces();
         }
-    
-        document.querySelector('.chessboard').innerHTML = html;
-        this.setChessPieces();
+    }
+    get displayChessboard(){
+        return this._displayChessboard;
     }
 }
 
