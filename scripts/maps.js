@@ -1,32 +1,31 @@
 export class Map{
-    constructor(){
-        this._positionMap = [
-            [1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1]
-        ];
-    }
 
-    updatePositionMap(chessPieces){
+    static positionMap = [
+        [1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1]
+    ];
+
+    static updatePositionMap(chessPieces){
         for(let i = 0; i < 8; i++){
             for(let j = 0; j < 8; j++){
-                this._positionMap[i][j] = 0;
+                Map.positionMap[i][j] = 0;
             }
         }
 
         chessPieces.forEach((piece) => {
             const [x, y] = piece.position;
-            this._positionMap[x][y] = 1;
+            Map.positionMap[x][y] = 1;
         });
     }
 
-    checkEmpty(x, y){
-        if(this._positionMap[x][y] === 1){
+    static checkEmpty(x, y){
+        if(Map.positionMap[x][y] === 1){
             return true;
         }
         else{

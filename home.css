@@ -33,3 +33,7 @@ div img{
 .black{
     background-color: rgb(118,150,86);
 }
+
+.selected{
+    background-color: rgb(189, 199, 72);
+}

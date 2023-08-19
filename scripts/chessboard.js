@@ -1,8 +1,9 @@
 import { setupChessboard } from './setup.js';
-import { chessEngine } from './chessEngine.js';
+import { ChessEngine } from './chessEngine.js';
 
 class Chessboard{
     constructor(){
+        this._engine = new ChessEngine();
         this._chessPieces = [];
         
         setupChessboard(this._chessPieces);
@@ -23,10 +24,7 @@ class Chessboard{
         };
 
         this._updateChessPosition();
-        chessEngine.applyFunctionality(this._chessPieces, this._updateChessPosition, this._clearPosition);
-    }
-    get updateChessPosition(){
-        return this._updateChessPosition();
+        this._engine.applyFunctionality(this._chessPieces, this._updateChessPosition, this._clearPosition);
     }
 }
 
