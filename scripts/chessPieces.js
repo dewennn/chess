@@ -20,20 +20,36 @@ export class Pawn extends ChessPiece{
         this._firstMove = true;
         this._possibleMoves = [];
 
-        this._generatePossibleMoves = (position) => {
+        this._generatePossibleMoves = () => {
             this._possibleMoves = [];
-            const [x, y] = position;
-            if(this._firstMove === true){
-                this._possibleMoves.push([x + 1, y + 1]);
-                this._possibleMoves.push([x + 2, y + 2]);
-                this._firstMove = false;
+            const [x, y] = this.position;
+            
+            if(this.color === 'black'){
+                if(this._firstMove === true){
+                    this._possibleMoves.push([x + 1, y + 1]);
+                    this._possibleMoves.push([x + 2, y + 2]);
+                    this._firstMove = false;
+                }
+                else{
+                    this._possibleMoves.push([x + 1, y + 1]);
+                }
             }
-            else{
-                this._possibleMoves.push([x++, y++]);
+            else if(this.color === 'white'){
+                if(this._firstMove === true){
+                    this._possibleMoves.push([x - 1, y - 1]);
+                    this._possibleMoves.push([x - 2, y - 2]);
+                    this._firstMove = false;
+                }
+                else{
+                    this._possibleMoves.push([x - 1, y - 1]);
+                }
             }
         }
 
-        this._generatePossibleMoves(position);
+        this._generatePossibleMoves();
+    }
+    get possibleMoves(){
+        return this._possibleMoves;
     }
     get generatePossibleMoves(){
         return this._generatePossibleMoves;
@@ -45,9 +61,9 @@ export class Horse extends ChessPiece{
         super(color, position);
         this._possibleMoves = [];
 
-        this._generatePossibleMoves = (position) => {
+        this._generatePossibleMoves = () => {
             this._possibleMoves = [];
-            const [x, y] = position;
+            const [x, y] = this.position;
 
             if(x + 2 < 8 && y + 1 < 8){
                 this._possibleMoves.push([x + 2, y + 1]);
@@ -75,7 +91,10 @@ export class Horse extends ChessPiece{
             }
         }
 
-        this._generatePossibleMoves(position);
+        this._generatePossibleMoves();
+    }
+    get possibleMoves(){
+        return this._possibleMoves;
     }
     get generatePossibleMoves(){
         return this._generatePossibleMoves;
@@ -87,9 +106,9 @@ export class Bishop extends ChessPiece{
         super(color, position);
         this._possibleMoves = [];
 
-        this._generatePossibleMoves = (position) => {
+        this._generatePossibleMoves = () => {
             this._possibleMoves = [];
-            const [x, y] = position;
+            const [x, y] = this.position;
 
             let xTemp = x, yTemp = y;
 
@@ -124,7 +143,10 @@ export class Bishop extends ChessPiece{
             }
         }
 
-        this._generatePossibleMoves(position);
+        this._generatePossibleMoves();
+    }
+    get possibleMoves(){
+        return this._possibleMoves;
     }
     get generatePossibleMoves(){
         return this._generatePossibleMoves;
@@ -136,9 +158,9 @@ export class Rook extends ChessPiece{
         super(color, position);
         this._possibleMoves = [];
 
-        this._generatePossibleMoves = (position) => {
+        this._generatePossibleMoves = () => {
             this._possibleMoves = [];
-            const [x, y] = position;
+            const [x, y] = this.position;
 
             let xTemp = x, yTemp = y;
 
@@ -169,7 +191,10 @@ export class Rook extends ChessPiece{
             }
         }
 
-        this._generatePossibleMoves(position);
+        this._generatePossibleMoves();
+    }
+    get possibleMoves(){
+        return this._possibleMoves;
     }
     get generatePossibleMoves(){
         return this._generatePossibleMoves;
@@ -181,9 +206,9 @@ export class Queen extends ChessPiece{
         super(color, position);
         this._possibleMoves = [];
 
-        this._generatePossibleMoves = (position) => {
+        this._generatePossibleMoves = () => {
             this._possibleMoves = [];
-            const [x, y] = position;
+            const [x, y] = this.position;
 
             let xTemp = x, yTemp = y;
 
@@ -246,7 +271,10 @@ export class Queen extends ChessPiece{
             }
         }
         
-        this._generatePossibleMoves(position);
+        this._generatePossibleMoves();
+    }
+    get possibleMoves(){
+        return this._possibleMoves;
     }
     get generatePossibleMoves(){
         return this._generatePossibleMoves;
@@ -258,9 +286,9 @@ export class King extends ChessPiece{
         super(color, position);
         this._possibleMoves = [];
 
-        this._generatePossibleMoves = (position) => {
+        this._generatePossibleMoves = () => {
             this._possibleMoves = [];
-            const [x, y] = position;
+            const [x, y] = this.position;
 
             if(x + 1 < 8 && y + 1 < 8){
                 this._possibleMoves.push([x+1, y+1]);
@@ -287,5 +315,11 @@ export class King extends ChessPiece{
                 this._possibleMoves.push([x, y-1]);
             }
         }
+    }
+    get possibleMoves(){
+        return this._possibleMoves;
+    }
+    get generatePossibleMoves(){
+        return this._generatePossibleMoves;
     }
 }
