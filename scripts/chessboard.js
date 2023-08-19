@@ -23,7 +23,7 @@ class Chessboard{
         };
 
         this._updateChessPosition();
-        chessEngine.applyFunctionality(this._chessPieces, this._updateChessPosition);
+        chessEngine.applyFunctionality(this._chessPieces, this._updateChessPosition, this._clearPosition);
     }
     get updateChessPosition(){
         return this._updateChessPosition();
