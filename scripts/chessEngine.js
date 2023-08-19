@@ -30,8 +30,6 @@ export class chessEngine{
                 }
             });
             chessEngine.map.updatePositionMap(chessPieces);
-            console.log(chessEngine.map);
-            console.log(chessPieces);
             chessEngine.resetPick();
         }
     }
