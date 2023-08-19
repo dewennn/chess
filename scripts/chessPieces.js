@@ -6,6 +6,9 @@ class ChessPiece{
     get color(){
         return this._color;
     }
+    set position(value){
+        this._position = value;
+    }
     get position(){
         return this._position;
     }
