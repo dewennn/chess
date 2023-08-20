@@ -2,8 +2,20 @@ import { Map } from "./map.js";
 
 export class ChessEngine{
     constructor(){
+        this._turn = "white";
         this._startPosition;
         this._picked = false;
+
+        this._changeTurn = () => {
+            if(this._turn === 'white'){
+                this._turn = 'black';
+                document.querySelector('.turn').innerHTML = 'BLACK';
+            }
+            else if(this._turn === 'black'){
+                this._turn = 'white';
+                document.querySelector('.turn').innerHTML = 'WHITE';
+            }
+        }
 
         this._pickThis = (position, chessPieces) => {
             const [x, y] = position;
@@ -54,38 +66,78 @@ export class ChessEngine{
 
         this._pickPosition = (position, chessPieces, clearPosition) => {
             const [x, y] = [Number(position[0]), Number(position[1])];
-    
-            if(this._picked == false && !Map.checkEmpty(x, y)){
-                this._pickThis([x, y], chessPieces);
-            }
-            else if(this._picked == true && !Map.checkEmpty(x, y)){
-                this._resetChoice(chessPieces);
-                this._pickThis([x, y], chessPieces);
-            }
-            else if(this._picked == true){
-                let validMove = false;
-                chessPieces.forEach((piece) => {
-                    if(piece.position[0] === this._startPosition[0] && piece.position[1] === this._startPosition[1]){
-                        piece.possibleMoves.forEach((position) => {
-                            if(position[0] === x & position[1] === y) validMove = true;
-                        });
-                    }
-                });
-
-                if(validMove === true){
-                    document.querySelector(`.box${this._startPosition[0]}${this._startPosition[1]}`).classList.remove('selected');
-                    clearPosition();
+            
+            
+            if(this._turn === 'white'){
+                if(this._picked == false && !Map.checkEmpty(x, y)){
+                    this._pickThis([x, y], chessPieces);
+                }
+                else if(this._picked == true && !Map.checkEmpty(x, y)){
+                    this._resetChoice(chessPieces);
+                    this._pickThis([x, y], chessPieces);
+                }
+                else if(this._picked == true){
+                    let validMove = false;
                     chessPieces.forEach((piece) => {
                         if(piece.position[0] === this._startPosition[0] && piece.position[1] === this._startPosition[1]){
-                            this._clearPossibleMoves(piece);
-                            piece.position = [x, y];
-                            if(piece.constructor.name === 'Pawn'){
-                                piece.firstMoveFalse();
-                            }
+                            piece.possibleMoves.forEach((position) => {
+                                if(position[0] === x & position[1] === y) validMove = true;
+                            });
                         }
                     });
-                    Map.updatePositionMap(chessPieces);
-                    this._resetpick();
+    
+                    if(validMove === true){
+                        document.querySelector(`.box${this._startPosition[0]}${this._startPosition[1]}`).classList.remove('selected');
+                        clearPosition();
+                        chessPieces.forEach((piece) => {
+                            if(piece.position[0] === this._startPosition[0] && piece.position[1] === this._startPosition[1]){
+                                this._clearPossibleMoves(piece);
+                                piece.position = [x, y];
+                                if(piece.constructor.name === 'Pawn'){
+                                    piece.firstMoveFalse();
+                                }
+                            }
+                        });
+                        Map.updatePositionMap(chessPieces);
+                        this._resetpick();
+                        this._changeTurn();
+                    }
+                }
+            }
+            else if(this._turn === 'black'){
+                if(this._picked == false && !Map.checkEmpty(x, y)){
+                    this._pickThis([x, y], chessPieces);
+                }
+                else if(this._picked == true && !Map.checkEmpty(x, y)){
+                    this._resetChoice(chessPieces);
+                    this._pickThis([x, y], chessPieces);
+                }
+                else if(this._picked == true){
+                    let validMove = false;
+                    chessPieces.forEach((piece) => {
+                        if(piece.position[0] === this._startPosition[0] && piece.position[1] === this._startPosition[1]){
+                            piece.possibleMoves.forEach((position) => {
+                                if(position[0] === x & position[1] === y) validMove = true;
+                            });
+                        }
+                    });
+    
+                    if(validMove === true){
+                        document.querySelector(`.box${this._startPosition[0]}${this._startPosition[1]}`).classList.remove('selected');
+                        clearPosition();
+                        chessPieces.forEach((piece) => {
+                            if(piece.position[0] === this._startPosition[0] && piece.position[1] === this._startPosition[1]){
+                                this._clearPossibleMoves(piece);
+                                piece.position = [x, y];
+                                if(piece.constructor.name === 'Pawn'){
+                                    piece.firstMoveFalse();
+                                }
+                            }
+                        });
+                        Map.updatePositionMap(chessPieces);
+                        this._resetpick();
+                        this._changeTurn();
+                    }
                 }
             }
         }

@@ -4,8 +4,8 @@ body{
 }
 
 div img{
-    height: 80px;
-    width: 80px;
+    height: 75px;
+    width: 75px;
     object-fit: contain;
 }
 
@@ -20,8 +20,8 @@ div img{
 
 .chessboard{
     display: grid;
-    grid-template-columns: 80px 80px 80px 80px 80px 80px 80px 80px;
-    grid-template-rows: 80px 80px 80px 80px 80px 80px 80px 80px;
+    grid-template-columns: 75px 75px 75px 75px 75px 75px 75px 75px;
+    grid-template-rows: 75px 75px 75px 75px 75px 75px 75px 75px;
     column-gap: 0px;
     row-gap: 0px;
 }
@@ -36,4 +36,15 @@ div img{
 
 .selected{
     background-color: rgb(189, 199, 72);
+}
+
+.scoreboard{
+    display: flex;
+    justify-content: center;
+}
+
+.turn{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 50px;
+    margin: 15px;
 }
