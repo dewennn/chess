@@ -5,6 +5,22 @@ export class ChessEngine{
         this._startPosition;
         this._picked = false;
 
+        this._showPossibleMoves = (piece) => {
+            piece.generatePossibleMoves();
+            piece.possibleMoves.forEach((position) => {
+                const [x, y] = position;
+                document.querySelector(`.box${x}${y}`).innerHTML = '<img src="source/grayCircle.png" alt="">';
+            });
+        }
+
+        this._clearPossibleMoves = (piece) => {
+            piece.generatePossibleMoves();
+            piece.possibleMoves.forEach((position) => {
+                const [x, y] = position;
+                document.querySelector(`.box${x}${y}`).innerHTML = '';
+            });
+        }
+
         this._resetpick = () => {
             this._startPosition = null;
             this._picked = false;
@@ -15,6 +31,12 @@ export class ChessEngine{
     
             if(this._picked == false && Map.checkEmpty(x, y)){
                 document.querySelector(`.box${x}${y}`).classList.add('selected');
+                chessPieces.forEach((piece) => {
+                    if(piece.position[0] === x && piece.position[1] === y){
+                        this._showPossibleMoves(piece);
+                    }
+                });
+
                 this._startPosition = [x, y];
                 this._picked = true;
             }
@@ -23,6 +45,7 @@ export class ChessEngine{
                 clearPosition();
                 chessPieces.forEach((piece) => {
                     if(piece.position[0] === this._startPosition[0] && piece.position[1] === this._startPosition[1]){
+                        this._clearPossibleMoves(piece);
                         piece.position = [x, y];
                     }
                 });
