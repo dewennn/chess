@@ -83,6 +83,9 @@ export class ChessEngine{
                         if(pieceToMove.constructor.name === 'Pawn'){
                             pieceToMove.firstMoveFalse();
                         }
+                        const temp = chessPieces[this._startPosition[0]][this._startPosition[1]];
+                        chessPieces[this._startPosition[0]][this._startPosition[1]] = chessPieces[x][y];
+                        chessPieces[x][y] = temp;
                         Map.updatePositionMap(chessPieces);
                         this._resetpick();
                         this._changeTurn();
@@ -113,6 +116,9 @@ export class ChessEngine{
                         if(pieceToMove.constructor.name === 'Pawn'){
                             pieceToMove.firstMoveFalse();
                         }
+                        const temp = chessPieces[this._startPosition[0]][this._startPosition[1]];
+                        chessPieces[this._startPosition[0]][this._startPosition[1]] = chessPieces[x][y];
+                        chessPieces[x][y] = temp;
                         Map.updatePositionMap(chessPieces);
                         this._resetpick();
                         this._changeTurn();
@@ -126,6 +132,7 @@ export class ChessEngine{
                 box.addEventListener('click', () => {
                     this._pickPosition(box.dataset.position, chessPieces, clearPosition);
                     updatePosition();
+                    console.log(chessPieces, Map.positionMap);
                 });
             });
 
