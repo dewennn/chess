@@ -34,10 +34,22 @@ export class Pawn extends ChessPiece{
                     if(Map.checkEmpty(x + 2, y)){
                         this._possibleMoves.push([x + 2, y]);
                     }
+                    if(Map.checkWhite(x + 1, y + 1)){
+                        this._possibleMoves.push([x + 1, y + 1]);
+                    }
+                    if(Map.checkWhite(x + 1, y - 1)){
+                        this._possibleMoves.push([x + 1, y - 1]);
+                    }
                 }
                 else{
                     if(Map.checkEmpty(x + 1, y)){
                         this._possibleMoves.push([x + 1, y]);
+                    }
+                    if(Map.checkWhite(x + 1, y + 1)){
+                        this._possibleMoves.push([x + 1, y + 1]);
+                    }
+                    if(Map.checkWhite(x + 1, y - 1)){
+                        this._possibleMoves.push([x + 1, y - 1]);
                     }
                 }
             }
@@ -49,10 +61,22 @@ export class Pawn extends ChessPiece{
                     if(Map.checkEmpty(x - 2, y)){
                         this._possibleMoves.push([x - 2, y]);
                     }
+                    if(Map.checkBlack(x - 1, y + 1)){
+                        this._possibleMoves.push([x - 1, y + 1]);
+                    }
+                    if(Map.checkBlack(x - 1, y - 1)){
+                        this._possibleMoves.push([x - 1, y - 1]);
+                    }
                 }
                 else{
-                    if(Map.checkEmpty(x - 1, y)){
+                    if(Map.checkBlack(x - 1, y)){
                         this._possibleMoves.push([x - 1, y]);
+                    }
+                    if(Map.checkBlack(x - 1, y + 1)){
+                        this._possibleMoves.push([x - 1, y + 1]);
+                    }
+                    if(Map.checkBlack(x - 1, y - 1)){
+                        this._possibleMoves.push([x - 1, y - 1]);
                     }
                 }
             }
@@ -159,6 +183,7 @@ export class Bishop extends ChessPiece{
                     yTemp++;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -168,6 +193,7 @@ export class Bishop extends ChessPiece{
                     yTemp--;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -177,6 +203,7 @@ export class Bishop extends ChessPiece{
                     yTemp++;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -186,6 +213,7 @@ export class Bishop extends ChessPiece{
                     yTemp--;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
             }
             else if(this.color === 'white'){
@@ -194,6 +222,7 @@ export class Bishop extends ChessPiece{
                     yTemp++;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -203,6 +232,7 @@ export class Bishop extends ChessPiece{
                     yTemp--;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -212,6 +242,7 @@ export class Bishop extends ChessPiece{
                     yTemp++;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -221,6 +252,7 @@ export class Bishop extends ChessPiece{
                     yTemp--;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
             }
         }
@@ -249,6 +281,7 @@ export class Rook extends ChessPiece{
                     xTemp++;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -257,6 +290,7 @@ export class Rook extends ChessPiece{
                     xTemp--;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -265,6 +299,7 @@ export class Rook extends ChessPiece{
                     yTemp++;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -273,6 +308,7 @@ export class Rook extends ChessPiece{
                     yTemp--;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
             }
             else if(this.color === 'white'){
@@ -280,6 +316,7 @@ export class Rook extends ChessPiece{
                     xTemp++;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -288,6 +325,7 @@ export class Rook extends ChessPiece{
                     xTemp--;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -296,6 +334,7 @@ export class Rook extends ChessPiece{
                     yTemp++;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -304,6 +343,7 @@ export class Rook extends ChessPiece{
                     yTemp--;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
             }
         }
@@ -333,6 +373,7 @@ export class Queen extends ChessPiece{
                     yTemp++;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -342,6 +383,7 @@ export class Queen extends ChessPiece{
                     yTemp--;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -351,6 +393,7 @@ export class Queen extends ChessPiece{
                     yTemp++;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -360,6 +403,7 @@ export class Queen extends ChessPiece{
                     yTemp--;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
 
                 xTemp = x, yTemp = y;
@@ -368,6 +412,7 @@ export class Queen extends ChessPiece{
                     xTemp++;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -376,6 +421,7 @@ export class Queen extends ChessPiece{
                     xTemp--;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -384,6 +430,7 @@ export class Queen extends ChessPiece{
                     yTemp++;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -392,6 +439,7 @@ export class Queen extends ChessPiece{
                     yTemp--;
                     if(Map.checkBlack(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkWhite(xTemp, yTemp)) break;
                 }
             }
             else if(this.color === 'white'){
@@ -400,6 +448,7 @@ export class Queen extends ChessPiece{
                     yTemp++;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -409,6 +458,7 @@ export class Queen extends ChessPiece{
                     yTemp--;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -418,6 +468,7 @@ export class Queen extends ChessPiece{
                     yTemp++;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -427,6 +478,7 @@ export class Queen extends ChessPiece{
                     yTemp--;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
 
                 xTemp = x, yTemp = y;
@@ -435,6 +487,7 @@ export class Queen extends ChessPiece{
                     xTemp++;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -443,6 +496,7 @@ export class Queen extends ChessPiece{
                     xTemp--;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -451,6 +505,7 @@ export class Queen extends ChessPiece{
                     yTemp++;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
     
                 xTemp = x, yTemp = y;
@@ -459,6 +514,7 @@ export class Queen extends ChessPiece{
                     yTemp--;
                     if(Map.checkWhite(xTemp, yTemp)) break;
                     this._possibleMoves.push([xTemp, yTemp]);
+                    if(Map.checkBlack(xTemp, yTemp)) break;
                 }
             }
         }
