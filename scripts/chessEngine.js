@@ -30,6 +30,7 @@ export class ChessEngine{
             const [x, y] = [Number(position[0]), Number(position[1])];
     
             if(this._picked == false && !Map.checkEmpty(x, y)){
+                this._resetpick();
                 document.querySelector(`.box${x}${y}`).classList.add('selected');
                 chessPieces.forEach((piece) => {
                     if(piece.position[0] === x && piece.position[1] === y){
@@ -41,16 +42,27 @@ export class ChessEngine{
                 this._picked = true;
             }
             else if(this._picked == true){
-                document.querySelector(`.box${this._startPosition[0]}${this._startPosition[1]}`).classList.remove('selected');
-                clearPosition();
+                let validMove = false;
                 chessPieces.forEach((piece) => {
                     if(piece.position[0] === this._startPosition[0] && piece.position[1] === this._startPosition[1]){
-                        this._clearPossibleMoves(piece);
-                        piece.position = [x, y];
+                        piece.possibleMoves.forEach((position) => {
+                            if(position[0] === x & position[1] === y) validMove = true;
+                        });
                     }
                 });
-                Map.updatePositionMap(chessPieces);
-                this._resetpick();
+
+                if(validMove === true){
+                    document.querySelector(`.box${this._startPosition[0]}${this._startPosition[1]}`).classList.remove('selected');
+                    clearPosition();
+                    chessPieces.forEach((piece) => {
+                        if(piece.position[0] === this._startPosition[0] && piece.position[1] === this._startPosition[1]){
+                            this._clearPossibleMoves(piece);
+                            piece.position = [x, y];
+                        }
+                    });
+                    Map.updatePositionMap(chessPieces);
+                    this._resetpick();
+                }
             }
         }
 

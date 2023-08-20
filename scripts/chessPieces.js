@@ -53,7 +53,9 @@ export class Pawn extends ChessPiece{
                     this._firstMove = false;
                 }
                 else{
-                    this._possibleMoves.push([x - 1, y]);
+                    if(Map.checkEmpty(x - 1, y)){
+                        this._possibleMoves.push([x - 1, y]);
+                    }
                 }
             }
         }
