@@ -25,11 +25,11 @@ export class Map{
     }
 
     static checkEmpty(x, y){
-        if(Map.positionMap[x][y] === 1){
-            return true;
+        if(Map.positionMap[x][y] !== 0){
+            return false;
         }
         else{
-            return false;
+            return true;
         }
     }
 

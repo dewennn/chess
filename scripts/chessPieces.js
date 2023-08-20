@@ -280,28 +280,28 @@ export class King extends ChessPiece{
             this._possibleMoves = [];
             const [x, y] = this.position;
 
-            if(x + 1 < 7 && y + 1 < 7){
+            if(x + 1 < 8 && y + 1 < 8){
                 this._possibleMoves.push([x+1, y+1]);
             }
-            else if(x + 1 < 7 && y - 1 > 0){
+            if(x + 1 < 8 && y - 1 >= 0){
                 this._possibleMoves.push([x+1, y-1]);
             }
-            else if(x - 1 > 0 && y - 1 > 0){
+            if(x - 1 >= 0 && y - 1 >= 0){
                 this._possibleMoves.push([x-1, y-1]);
             }
-            else if(x - 1 > 0 && y + 1 < 7){
+            if(x - 1 >= 0 && y + 1 < 8){
                 this._possibleMoves.push([x-1, y+1]);
             }
-            else if(x + 1 < 7){
+            if(x + 1 < 8){
                 this._possibleMoves.push([x+1, y]);
             }
-            else if(x - 1 > 0){
-                this._possibleMoves.push([x-1, y+1]);
+            if(x - 1 >= 0){
+                this._possibleMoves.push([x-1, y]);
             }
-            else if(y + 1 < 7){
+            if(y + 1 < 8){
                 this._possibleMoves.push([x, y+1]);
             }
-            else if(y - 1 > 0){
+            if(y - 1 >= 0){
                 this._possibleMoves.push([x, y-1]);
             }
         }

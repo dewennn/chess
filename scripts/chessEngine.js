@@ -29,7 +29,7 @@ export class ChessEngine{
         this._pickPosition = (position, chessPieces, clearPosition) => {
             const [x, y] = [Number(position[0]), Number(position[1])];
     
-            if(this._picked == false && Map.checkEmpty(x, y)){
+            if(this._picked == false && !Map.checkEmpty(x, y)){
                 document.querySelector(`.box${x}${y}`).classList.add('selected');
                 chessPieces.forEach((piece) => {
                     if(piece.position[0] === x && piece.position[1] === y){
