@@ -76,7 +76,7 @@ export class Horse extends ChessPiece{
             const [x, y] = this.position;
 
             if(this.color === 'black'){
-                if(x + 2 < 8 && y + 1 && !Map.checkBlack(x+2, y+1)){
+                if(x + 2 < 8 && y + 1 < 8&& !Map.checkBlack(x+2, y+1)){
                     this._possibleMoves.push([x + 2, y + 1]);
                 }
                 if(x + 2 < 8 && y - 1 >= 0 && !Map.checkBlack(x+2, y-1)){
@@ -102,7 +102,7 @@ export class Horse extends ChessPiece{
                 }
             }
             else if(this.color === 'white'){
-                if(x + 2 < 8 && y + 1 && !Map.checkWhite(x+2, y+1)){
+                if(x + 2 < 8 && y + 1 < 8 && !Map.checkWhite(x+2, y+1)){
                     this._possibleMoves.push([x + 2, y + 1]);
                 }
                 if(x + 2 < 8 && y - 1 >= 0 && !Map.checkWhite(x+2, y-1)){
