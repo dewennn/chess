@@ -26,22 +26,22 @@ export class Pawn extends ChessPiece{
             
             if(this.color === 'black'){
                 if(this._firstMove === true){
-                    this._possibleMoves.push([x + 1, y + 1]);
-                    this._possibleMoves.push([x + 2, y + 2]);
+                    this._possibleMoves.push([x + 1, y]);
+                    this._possibleMoves.push([x + 2, y]);
                     this._firstMove = false;
                 }
                 else{
-                    this._possibleMoves.push([x + 1, y + 1]);
+                    this._possibleMoves.push([x + 1, y]);
                 }
             }
             else if(this.color === 'white'){
                 if(this._firstMove === true){
-                    this._possibleMoves.push([x - 1, y - 1]);
-                    this._possibleMoves.push([x - 2, y - 2]);
+                    this._possibleMoves.push([x - 1, y]);
+                    this._possibleMoves.push([x - 2, y]);
                     this._firstMove = false;
                 }
                 else{
-                    this._possibleMoves.push([x - 1, y - 1]);
+                    this._possibleMoves.push([x - 1, y]);
                 }
             }
         }
@@ -112,7 +112,7 @@ export class Bishop extends ChessPiece{
 
             let xTemp = x, yTemp = y;
 
-            while(xTemp < 8 && yTemp < 8){
+            while(xTemp < 7 && yTemp < 7){
                 xTemp++;
                 yTemp++;
                 this._possibleMoves.push([xTemp, yTemp]);
@@ -120,7 +120,7 @@ export class Bishop extends ChessPiece{
 
             xTemp = x, yTemp = y;
 
-            while(xTemp < 8 && yTemp >= 0){
+            while(xTemp < 7 && yTemp > 0){
                 xTemp++;
                 yTemp--;
                 this._possibleMoves.push([xTemp, yTemp]);
@@ -128,7 +128,7 @@ export class Bishop extends ChessPiece{
 
             xTemp = x, yTemp = y;
 
-            while(xTemp >= 0 && yTemp < 8){
+            while(xTemp > 0 && yTemp < 7){
                 xTemp--;
                 yTemp++;
                 this._possibleMoves.push([xTemp, yTemp]);
@@ -136,7 +136,7 @@ export class Bishop extends ChessPiece{
 
             xTemp = x, yTemp = y;
 
-            while(xTemp >= 0 && yTemp >= 0){
+            while(xTemp > 0 && yTemp > 0){
                 xTemp--;
                 yTemp--;
                 this._possibleMoves.push([xTemp, yTemp]);
@@ -164,28 +164,28 @@ export class Rook extends ChessPiece{
 
             let xTemp = x, yTemp = y;
 
-            while(xTemp < 8){
+            while(xTemp < 7){
                 xTemp++;
                 this._possibleMoves.push([xTemp, yTemp]);
             }
 
             xTemp = x, yTemp = y;
 
-            while(xTemp >= 0){
+            while(xTemp > 0){
                 xTemp--;
                 this._possibleMoves.push([xTemp, yTemp]);
             }
 
             xTemp = x, yTemp = y;
 
-            while(yTemp < 8){
+            while(yTemp < 7){
                 yTemp++;
                 this._possibleMoves.push([xTemp, yTemp]);
             }
 
             xTemp = x, yTemp = y;
 
-            while(yTemp >= 0){
+            while(yTemp > 0){
                 yTemp--;
                 this._possibleMoves.push([xTemp, yTemp]);
             }
@@ -212,7 +212,7 @@ export class Queen extends ChessPiece{
 
             let xTemp = x, yTemp = y;
 
-            while(xTemp < 8 && yTemp < 8){
+            while(xTemp < 7 && yTemp < 7){
                 xTemp++;
                 yTemp++;
                 this._possibleMoves.push([xTemp, yTemp]);
@@ -220,7 +220,7 @@ export class Queen extends ChessPiece{
 
             xTemp = x, yTemp = y;
 
-            while(xTemp < 8 && yTemp >= 0){
+            while(xTemp < 7 && yTemp > 0){
                 xTemp++;
                 yTemp--;
                 this._possibleMoves.push([xTemp, yTemp]);
@@ -228,7 +228,7 @@ export class Queen extends ChessPiece{
 
             xTemp = x, yTemp = y;
 
-            while(xTemp >= 0 && yTemp < 8){
+            while(xTemp > 0 && yTemp < 7){
                 xTemp--;
                 yTemp++;
                 this._possibleMoves.push([xTemp, yTemp]);
@@ -236,7 +236,7 @@ export class Queen extends ChessPiece{
 
             xTemp = x, yTemp = y;
 
-            while(xTemp >= 0 && yTemp >= 0){
+            while(xTemp > 0 && yTemp > 0){
                 xTemp--;
                 yTemp--;
                 this._possibleMoves.push([xTemp, yTemp]);
@@ -244,28 +244,28 @@ export class Queen extends ChessPiece{
 
             xTemp = x, yTemp = y;
 
-            while(xTemp < 8){
+            while(xTemp < 7){
                 xTemp++;
                 this._possibleMoves.push([xTemp, yTemp]);
             }
 
             xTemp = x, yTemp = y;
 
-            while(xTemp >= 0){
+            while(xTemp > 0){
                 xTemp--;
                 this._possibleMoves.push([xTemp, yTemp]);
             }
 
             xTemp = x, yTemp = y;
 
-            while(yTemp < 8){
+            while(yTemp < 7){
                 yTemp++;
                 this._possibleMoves.push([xTemp, yTemp]);
             }
 
             xTemp = x, yTemp = y;
 
-            while(yTemp >= 0){
+            while(yTemp > 0){
                 yTemp--;
                 this._possibleMoves.push([xTemp, yTemp]);
             }
@@ -290,28 +290,28 @@ export class King extends ChessPiece{
             this._possibleMoves = [];
             const [x, y] = this.position;
 
-            if(x + 1 < 8 && y + 1 < 8){
+            if(x + 1 < 7 && y + 1 < 7){
                 this._possibleMoves.push([x+1, y+1]);
             }
-            else if(x + 1 < 8 && y - 1 >= 0){
+            else if(x + 1 < 7 && y - 1 > 0){
                 this._possibleMoves.push([x+1, y-1]);
             }
-            else if(x - 1 >= 0 && y - 1 >= 0){
+            else if(x - 1 > 0 && y - 1 > 0){
                 this._possibleMoves.push([x-1, y-1]);
             }
-            else if(x - 1 >= 0 && y + 1 < 8){
+            else if(x - 1 > 0 && y + 1 < 7){
                 this._possibleMoves.push([x-1, y+1]);
             }
-            else if(x + 1 < 8){
+            else if(x + 1 < 7){
                 this._possibleMoves.push([x+1, y]);
             }
-            else if(x - 1 >= 0){
+            else if(x - 1 > 0){
                 this._possibleMoves.push([x-1, y+1]);
             }
-            else if(y + 1 < 8){
+            else if(y + 1 < 7){
                 this._possibleMoves.push([x, y+1]);
             }
-            else if(y - 1 >= 0){
+            else if(y - 1 > 0){
                 this._possibleMoves.push([x, y-1]);
             }
         }
