@@ -5,6 +5,32 @@ export class ChessEngine{
         this._startPosition;
         this._picked = false;
 
+        this._pickThis = (position, chessPieces) => {
+            const [x, y] = position;
+            this._resetpick();
+            document.querySelector(`.box${x}${y}`).classList.add('selected');
+            chessPieces.forEach((piece) => {
+                if(piece.position[0] === x && piece.position[1] === y){
+                    this._showPossibleMoves(piece);
+                }
+            });
+
+            this._startPosition = [x, y];
+            this._picked = true;
+        }
+
+        this._resetChoice = (chessPieces) => {
+            if(this._picked === true){
+                document.querySelector(`.box${this._startPosition[0]}${this._startPosition[1]}`).classList.remove('selected');
+                chessPieces.forEach((piece) => {
+                    if(piece.position[0] === this._startPosition[0] && piece.position[1] === this._startPosition[1]){
+                        this._clearPossibleMoves(piece);
+                    }
+                });
+                this._resetpick();
+            }
+        }
+
         this._showPossibleMoves = (piece) => {
             piece.generatePossibleMoves();
             piece.possibleMoves.forEach((position) => {
@@ -30,16 +56,11 @@ export class ChessEngine{
             const [x, y] = [Number(position[0]), Number(position[1])];
     
             if(this._picked == false && !Map.checkEmpty(x, y)){
-                this._resetpick();
-                document.querySelector(`.box${x}${y}`).classList.add('selected');
-                chessPieces.forEach((piece) => {
-                    if(piece.position[0] === x && piece.position[1] === y){
-                        this._showPossibleMoves(piece);
-                    }
-                });
-
-                this._startPosition = [x, y];
-                this._picked = true;
+                this._pickThis([x, y], chessPieces);
+            }
+            else if(this._picked == true && !Map.checkEmpty(x, y)){
+                this._resetChoice(chessPieces);
+                this._pickThis([x, y], chessPieces);
             }
             else if(this._picked == true){
                 let validMove = false;
@@ -58,6 +79,9 @@ export class ChessEngine{
                         if(piece.position[0] === this._startPosition[0] && piece.position[1] === this._startPosition[1]){
                             this._clearPossibleMoves(piece);
                             piece.position = [x, y];
+                            if(piece.constructor.name === 'Pawn'){
+                                piece.firstMoveFalse();
+                            }
                         }
                     });
                     Map.updatePositionMap(chessPieces);
@@ -73,6 +97,7 @@ export class ChessEngine{
                     updatePosition();
                 });
             });
+
         }
     }
     get applyFunctionality(){

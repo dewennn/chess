@@ -34,7 +34,6 @@ export class Pawn extends ChessPiece{
                     if(Map.checkEmpty(x + 2, y)){
                         this._possibleMoves.push([x + 2, y]);
                     }
-                    this._firstMove = false;
                 }
                 else{
                     if(Map.checkEmpty(x + 1, y)){
@@ -50,7 +49,6 @@ export class Pawn extends ChessPiece{
                     if(Map.checkEmpty(x - 2, y)){
                         this._possibleMoves.push([x - 2, y]);
                     }
-                    this._firstMove = false;
                 }
                 else{
                     if(Map.checkEmpty(x - 1, y)){
@@ -65,6 +63,11 @@ export class Pawn extends ChessPiece{
     }
     get generatePossibleMoves(){
         return this._generatePossibleMoves;
+    }
+    get firstMoveFalse(){
+        return () => {
+            this._firstMove = false;
+        }
     }
 }
 
