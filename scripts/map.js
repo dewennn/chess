@@ -18,21 +18,25 @@ export class Map{
             }
         }
 
-        chessPieces.forEach((piece) => {
-            const [x, y] = piece.position;
+        chessPieces.forEach((row) => {
+            row.forEach((piece) => {
+                if(piece !== 0){
+                    const [x, y] = piece.position;
 
-            if(piece.color === 'black' && piece.constructor.name === "King"){
-                Map.positionMap[x][y] = 4;
-            }
-            else if(piece.color === 'white' && piece.constructor.name === "King"){
-                Map.positionMap[x][y] = 3;
-            }
-            else if(piece.color === 'black'){
-                Map.positionMap[x][y] = 2;
-            }
-            else if(piece.color === 'white'){
-                Map.positionMap[x][y] = 1;
-            }
+                    if(piece.color === 'black' && piece.constructor.name === "King"){
+                        Map.positionMap[x][y] = 4;
+                    }
+                    else if(piece.color === 'white' && piece.constructor.name === "King"){
+                        Map.positionMap[x][y] = 3;
+                    }
+                    else if(piece.color === 'black'){
+                        Map.positionMap[x][y] = 2;
+                    }
+                    else if(piece.color === 'white'){
+                        Map.positionMap[x][y] = 1;
+                    }
+                }
+            });
         });
     }
 
