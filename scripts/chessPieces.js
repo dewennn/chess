@@ -45,8 +45,6 @@ export class Pawn extends ChessPiece{
                 }
             }
         }
-
-        this._generatePossibleMoves();
     }
     get possibleMoves(){
         return this._possibleMoves;
@@ -90,8 +88,6 @@ export class Horse extends ChessPiece{
                 this._possibleMoves.push([x - 1, y - 2]);
             }
         }
-
-        this._generatePossibleMoves();
     }
     get possibleMoves(){
         return this._possibleMoves;
@@ -142,8 +138,6 @@ export class Bishop extends ChessPiece{
                 this._possibleMoves.push([xTemp, yTemp]);
             }
         }
-
-        this._generatePossibleMoves();
     }
     get possibleMoves(){
         return this._possibleMoves;
@@ -190,8 +184,6 @@ export class Rook extends ChessPiece{
                 this._possibleMoves.push([xTemp, yTemp]);
             }
         }
-
-        this._generatePossibleMoves();
     }
     get possibleMoves(){
         return this._possibleMoves;
@@ -270,8 +262,6 @@ export class Queen extends ChessPiece{
                 this._possibleMoves.push([xTemp, yTemp]);
             }
         }
-        
-        this._generatePossibleMoves();
     }
     get possibleMoves(){
         return this._possibleMoves;
