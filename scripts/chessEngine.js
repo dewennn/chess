@@ -1,4 +1,4 @@
-import { Map } from "./maps.js";
+import { Map } from "./map.js";
 
 export class ChessEngine{
     constructor(){
