@@ -60,10 +60,10 @@ export class ChessEngine{
             
             
             if(this._turn === 'white'){
-                if(this._picked == false && chessPieces[x][y] !== 0){
+                if(this._picked == false && chessPieces[x][y] !== 0 && chessPieces[x][y].color === 'white'){
                     this._pickThis([x, y], chessPieces);
                 }
-                else if(this._picked == true && chessPieces[x][y] !== 0){
+                else if(this._picked == true && chessPieces[x][y] !== 0 && chessPieces[x][y].color === 'white'){
                     this._resetChoice(chessPieces);
                     this._pickThis([x, y], chessPieces);
                 }
@@ -93,10 +93,10 @@ export class ChessEngine{
                 }
             }
             else if(this._turn === 'black'){
-                if(this._picked == false && chessPieces[x][y] !== 0){
+                if(this._picked == false && chessPieces[x][y] !== 0 && chessPieces[x][y].color === 'black'){
                     this._pickThis([x, y], chessPieces);
                 }
-                else if(this._picked == true && chessPieces[x][y] !== 0){
+                else if(this._picked == true && chessPieces[x][y] !== 0 && chessPieces[x][y].color === 'black'){
                     this._resetChoice(chessPieces);
                     this._pickThis([x, y], chessPieces);
                 }
