@@ -8,7 +8,7 @@ class ChessPiece{
         this._generatePossibleMoves;
 
         this._cantMove = () => {
-            this.possibleMoves = [];
+            this._possibleMoves = [];
         }
     }
     get color(){

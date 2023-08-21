@@ -29,6 +29,8 @@ export class ChessEngine{
                 });
             });
 
+            this._updatePossibleMove(chessPieces);
+
             chessPieces.forEach((row) => {
                 row.forEach((piece) => {
                     if(piece !== 0){
@@ -39,8 +41,8 @@ export class ChessEngine{
                 });
             });
 
-            Map.kingInDanger = danger;
             console.log(danger);
+            Map.kingInDanger = danger;
         }
 
         this._changeTurn = () => {
@@ -58,6 +60,14 @@ export class ChessEngine{
             const [x, y] = position;
             this._resetpick();
             document.querySelector(`.box${x}${y}`).classList.add('selected');
+
+            Map.positionMap[x][y] = 0;
+            this._kingInDanger(chessPieces);
+            if(Map.kingInDanger){
+                chessPieces[x][y].cantMove();
+            }
+            Map.positionMap[x][y] = this._turn === 'black' ? 2 : 1;
+
             this._showPossibleMoves(chessPieces[x][y], chessPieces);
             this._startPosition = [x, y];
             this._picked = true;
