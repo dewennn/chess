@@ -51,21 +51,22 @@ export class Map{
         }
     }
 
-    static checkBlack(x, y){
-        if(Map.positionMap[x][y] !== 2 && Map.positionMap[x][y] !== 4){
-            return false;
+    static checkColor(x, y, color){
+        if(color === 'black'){
+            if(Map.positionMap[x][y] !== 2 && Map.positionMap[x][y] !== 4){
+                return false;
+            }
+            else{
+                return true;
+            }
         }
-        else{
-            return true;
-        }
-    }
-
-    static checkWhite(x, y){
-        if(Map.positionMap[x][y] !== 1 && Map.positionMap[x][y] !== 3){
-            return false;
-        }
-        else{
-            return true;
+        else if(color === 'white'){
+            if(Map.positionMap[x][y] !== 1 && Map.positionMap[x][y] !== 3){
+                return false;
+            }
+            else{
+                return true;
+            }
         }
     }
 
