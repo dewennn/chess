@@ -71,6 +71,7 @@ class ChessPiece{
                     temp1.push([xTemp, yTemp]);
                     if(xTemp === xEnemy && yTemp === yEnemy){
                         this._possibleMoves = temp1;
+                        break;
                     }
                 }
 
@@ -82,6 +83,7 @@ class ChessPiece{
                     temp2.push([xTemp, yTemp]);
                     if(xTemp === xEnemy && yTemp === yEnemy){
                         this._possibleMoves = temp2;
+                        break;
                     }
                 }
 
@@ -93,6 +95,7 @@ class ChessPiece{
                     temp3.push([xTemp, yTemp]);
                     if(xTemp === xEnemy && yTemp === yEnemy){
                         this._possibleMoves = temp3;
+                        break;
                     }
                 }
 
@@ -104,6 +107,7 @@ class ChessPiece{
                     temp4.push([xTemp, yTemp]);
                     if(xTemp === xEnemy && yTemp === yEnemy){
                         this._possibleMoves = temp4;
+                        break;
                     }
                 }
             }
@@ -118,7 +122,10 @@ class ChessPiece{
                 while(xTemp < 7){
                     xTemp++;
                     temp1.push([xTemp, yTemp]);
-                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp1;
+                        break;
+                    }
                 }
     
                 xTemp = x, yTemp = y;
@@ -126,7 +133,10 @@ class ChessPiece{
                 while(xTemp > 0){
                     xTemp--;
                     temp2.push([xTemp, yTemp]);
-                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp2;
+                        break;
+                    }
                 }
     
                 xTemp = x, yTemp = y;
@@ -134,15 +144,21 @@ class ChessPiece{
                 while(yTemp < 7){
                     yTemp++;
                     temp3.push([xTemp, yTemp]);
-                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp3;
+                        break;
+                    }
                 }
     
                 xTemp = x, yTemp = y;
     
                 while(yTemp > 0){
                     yTemp--;
-                    temp2.push([xTemp, yTemp]);
-                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                    temp4.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp4;
+                        break;
+                    }
                 }
             }
             else if(this.name === 'Queen'){
@@ -163,6 +179,7 @@ class ChessPiece{
                     temp1.push([xTemp, yTemp]);
                     if(xTemp === xEnemy && yTemp === yEnemy){
                         this._possibleMoves = temp1;
+                        break;
                     }
                 }
 
@@ -174,6 +191,7 @@ class ChessPiece{
                     temp2.push([xTemp, yTemp]);
                     if(xTemp === xEnemy && yTemp === yEnemy){
                         this._possibleMoves = temp2;
+                        break;
                     }
                 }
 
@@ -185,6 +203,7 @@ class ChessPiece{
                     temp3.push([xTemp, yTemp]);
                     if(xTemp === xEnemy && yTemp === yEnemy){
                         this._possibleMoves = temp3;
+                        break;
                     }
                 }
 
@@ -196,6 +215,7 @@ class ChessPiece{
                     temp4.push([xTemp, yTemp]);
                     if(xTemp === xEnemy && yTemp === yEnemy){
                         this._possibleMoves = temp4;
+                        break;
                     }
                 }
 
@@ -204,7 +224,10 @@ class ChessPiece{
                 while(xTemp < 7){
                     xTemp++;
                     temp5.push([xTemp, yTemp]);
-                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp5;
+                        break;
+                    }
                 }
     
                 xTemp = x, yTemp = y;
@@ -212,7 +235,10 @@ class ChessPiece{
                 while(xTemp > 0){
                     xTemp--;
                     temp6.push([xTemp, yTemp]);
-                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp6;
+                        break;
+                    }
                 }
     
                 xTemp = x, yTemp = y;
@@ -220,7 +246,10 @@ class ChessPiece{
                 while(yTemp < 7){
                     yTemp++;
                     temp7.push([xTemp, yTemp]);
-                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp7;
+                        break;
+                    }
                 }
     
                 xTemp = x, yTemp = y;
@@ -228,7 +257,10 @@ class ChessPiece{
                 while(yTemp > 0){
                     yTemp--;
                     temp8.push([xTemp, yTemp]);
-                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp8;
+                        break;
+                    }
                 }
             }
         }
