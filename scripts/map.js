@@ -25,10 +25,10 @@ export class Map{
                 if(piece !== 0){
                     const [x, y] = piece.position;
 
-                    if(piece.color === 'black' && piece.constructor.name === "King"){
+                    if(piece.color === 'black' && piece.name === "King"){
                         Map.positionMap[x][y] = 4;
                     }
-                    else if(piece.color === 'white' && piece.constructor.name === "King"){
+                    else if(piece.color === 'white' && piece.name === "King"){
                         Map.positionMap[x][y] = 3;
                     }
                     else if(piece.color === 'black'){

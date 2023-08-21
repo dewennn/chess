@@ -2,14 +2,213 @@ import { Map } from "./map.js";
 
 class ChessPiece{
     constructor(color, position){
+        this._name;
         this._color = color;
         this._position = position;
         this._possibleMoves = [];
         this._generatePossibleMoves;
 
-        this._cantMove = () => {
+        this._cantMove = (attacker) => {
             this._possibleMoves = [];
+            const [xEnemy, yEnemy] = attacker.position;
+            const [x, y] = this.position;
+
+            if(this.name === 'Pawn'){
+                if(this.color === 'black'){
+                    if(xEnemy === x+1 && yEnemy === y+1){
+                        this.possibleMoves.push([x+1, y+1]);
+                    }
+                    if(xEnemy === x+1 && yEnemy === y-1){
+                        this.possibleMoves.push([x+1, y-1]);
+                    }
+                }
+                else if(this.color === 'white'){
+                    if(xEnemy === x-1 && yEnemy === y+1){
+                        this.possibleMoves.push([x-1, y+1]);
+                    }
+                    if(xEnemy === x-1 && yEnemy === y-1){
+                        this.possibleMoves.push([x-1, y-1]);
+                    }
+                }
+            }
+            else if(this.name === 'Bishop'){
+                const temp1 = [];
+                const temp2 = [];
+                const temp3 = [];
+                const temp4 = [];
+
+                let xTemp = x, yTemp = y;
+
+                while(xTemp < 7 && yTemp < 7){
+                    xTemp++;
+                    yTemp++;
+                    temp1.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp1;
+                    }
+                }
+
+                xTemp = x, yTemp = y;
+
+                while(xTemp < 7 && yTemp > 0){
+                    xTemp++;
+                    yTemp--;
+                    temp2.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp2;
+                    }
+                }
+
+                xTemp = x, yTemp = y;
+
+                while(xTemp > 0 && yTemp < 7){
+                    xTemp--;
+                    yTemp++;
+                    temp3.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp3;
+                    }
+                }
+
+                xTemp = x, yTemp = y;
+
+                while(xTemp > 0 && yTemp > 0){
+                    xTemp--;
+                    yTemp--;
+                    temp4.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp4;
+                    }
+                }
+            }
+            else if(this.name === 'Rook'){
+                const temp1 = [];
+                const temp2 = [];
+                const temp3 = [];
+                const temp4 = [];
+
+                let xTemp = x, yTemp = y;
+
+                while(xTemp < 7){
+                    xTemp++;
+                    temp1.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                }
+    
+                xTemp = x, yTemp = y;
+    
+                while(xTemp > 0){
+                    xTemp--;
+                    temp2.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                }
+    
+                xTemp = x, yTemp = y;
+    
+                while(yTemp < 7){
+                    yTemp++;
+                    temp3.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                }
+    
+                xTemp = x, yTemp = y;
+    
+                while(yTemp > 0){
+                    yTemp--;
+                    temp2.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                }
+            }
+            else if(this.name === 'Queen'){
+                const temp1 = [];
+                const temp2 = [];
+                const temp3 = [];
+                const temp4 = [];
+                const temp5 = [];
+                const temp6 = [];
+                const temp7 = [];
+                const temp8 = [];
+
+                let xTemp = x, yTemp = y;
+
+                while(xTemp < 7 && yTemp < 7){
+                    xTemp++;
+                    yTemp++;
+                    temp1.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp1;
+                    }
+                }
+
+                xTemp = x, yTemp = y;
+
+                while(xTemp < 7 && yTemp > 0){
+                    xTemp++;
+                    yTemp--;
+                    temp2.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp2;
+                    }
+                }
+
+                xTemp = x, yTemp = y;
+
+                while(xTemp > 0 && yTemp < 7){
+                    xTemp--;
+                    yTemp++;
+                    temp3.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp3;
+                    }
+                }
+
+                xTemp = x, yTemp = y;
+
+                while(xTemp > 0 && yTemp > 0){
+                    xTemp--;
+                    yTemp--;
+                    temp4.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy){
+                        this._possibleMoves = temp4;
+                    }
+                }
+
+                xTemp = x, yTemp = y;
+
+                while(xTemp < 7){
+                    xTemp++;
+                    temp5.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                }
+    
+                xTemp = x, yTemp = y;
+    
+                while(xTemp > 0){
+                    xTemp--;
+                    temp6.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                }
+    
+                xTemp = x, yTemp = y;
+    
+                while(yTemp < 7){
+                    yTemp++;
+                    temp7.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                }
+    
+                xTemp = x, yTemp = y;
+    
+                while(yTemp > 0){
+                    yTemp--;
+                    temp8.push([xTemp, yTemp]);
+                    if(xTemp === xEnemy && yTemp === yEnemy) break;
+                }
+            }
         }
+    }
+    get name(){
+        return this._name;
     }
     get color(){
         return this._color;
@@ -34,6 +233,7 @@ class ChessPiece{
 export class Pawn extends ChessPiece{
     constructor(color, position){
         super(color, position);
+        this._name = 'Pawn';
         this._firstMove = true;
 
         this._generatePossibleMoves = () => {
@@ -106,6 +306,7 @@ export class Pawn extends ChessPiece{
 export class Horse extends ChessPiece{
     constructor(color, position){
         super(color, position);
+        this._name = 'Horse';
         this._possibleMoves = [];
 
         this._generatePossibleMoves = () => {
@@ -143,6 +344,7 @@ export class Horse extends ChessPiece{
 export class Bishop extends ChessPiece{
     constructor(color, position){
         super(color, position);
+        this._name = 'Bishop';
         this._possibleMoves = [];
 
         this._generatePossibleMoves = () => {
@@ -197,6 +399,7 @@ export class Bishop extends ChessPiece{
 export class Rook extends ChessPiece{
     constructor(color, position){
         super(color, position);
+        this._name = 'Rook';
         this._possibleMoves = [];
 
         this._generatePossibleMoves = () => {
@@ -247,6 +450,7 @@ export class Rook extends ChessPiece{
 export class Queen extends ChessPiece{
     constructor(color, position){
         super(color, position);
+        this._name = 'Queen';
         this._possibleMoves = [];
 
         this._generatePossibleMoves = () => {
@@ -337,6 +541,7 @@ export class Queen extends ChessPiece{
 export class King extends ChessPiece{
     constructor(color, position){
         super(color, position);
+        this._name = 'King';
         this._possibleMoves = [];
 
         this._generatePossibleMoves = () => {

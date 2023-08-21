@@ -22,7 +22,7 @@ export class ChessEngine{
             chessPieces.forEach((row) => {
                 row.forEach((piece) => {
                     if(piece !== 0){
-                        if(piece.constructor.name === 'King' && piece.color === this._turn){
+                        if(piece.name === 'King' && piece.color === this._turn){
                             king = piece;
                         }
                     }
@@ -31,11 +31,16 @@ export class ChessEngine{
 
             this._updatePossibleMove(chessPieces);
 
+            let attacker;
+
             chessPieces.forEach((row) => {
                 row.forEach((piece) => {
                     if(piece !== 0){
                         piece.possibleMoves.forEach((move) => {
-                            if(move[0] === king.position[0] && move[1] === king.position[1]) danger = true;
+                            if(move[0] === king.position[0] && move[1] === king.position[1]){
+                                danger = true;
+                                attacker = piece;
+                            }
                         });
                     }
                 });
@@ -43,6 +48,7 @@ export class ChessEngine{
 
             console.log(danger);
             Map.kingInDanger = danger;
+            return attacker;
         }
 
         this._changeTurn = () => {
@@ -61,12 +67,14 @@ export class ChessEngine{
             this._resetpick();
             document.querySelector(`.box${x}${y}`).classList.add('selected');
 
-            Map.positionMap[x][y] = 0;
-            this._kingInDanger(chessPieces);
-            if(Map.kingInDanger){
-                chessPieces[x][y].cantMove();
+            if(chessPieces[x][y].name !== 'King'){
+                Map.positionMap[x][y] = 0;
+                const attacker = this._kingInDanger(chessPieces);
+                if(Map.kingInDanger){
+                    chessPieces[x][y].cantMove(attacker);
+                }
+                Map.positionMap[x][y] = this._turn === 'black' ? 2 : 1;
             }
-            Map.positionMap[x][y] = this._turn === 'black' ? 2 : 1;
 
             this._showPossibleMoves(chessPieces[x][y], chessPieces);
             this._startPosition = [x, y];
@@ -132,7 +140,7 @@ export class ChessEngine{
                     this._clearPossibleMoves(pieceToMove);
                     clearPosition();
                     pieceToMove.position = [x, y];
-                    if(pieceToMove.constructor.name === 'Pawn'){
+                    if(pieceToMove.name === 'Pawn'){
                         pieceToMove.firstMoveFalse();
                     }
                     const temp = chessPieces[this._startPosition[0]][this._startPosition[1]];
