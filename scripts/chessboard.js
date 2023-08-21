@@ -32,6 +32,7 @@ class Chessboard{
 
         this._updateChessPosition();
         this._engine.applyFunctionality(this._chessPieces, this._updateChessPosition, this._clearPosition);
+        this._engine.updatePossibleMove(this._chessPieces);
     }
 }
 

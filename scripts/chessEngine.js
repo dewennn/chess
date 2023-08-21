@@ -6,6 +6,43 @@ export class ChessEngine{
         this._startPosition;
         this._picked = false;
 
+        this._updatePossibleMove = (chessPieces) => {
+            chessPieces.forEach((row) => {
+                row.forEach((piece) => {
+                    if(piece !== 0){
+                        piece.generatePossibleMoves();
+                    }
+                });
+            });
+        }
+
+        this._kingInDanger = (chessPieces) => {
+            let danger = false;
+            let king;
+            chessPieces.forEach((row) => {
+                row.forEach((piece) => {
+                    if(piece !== 0){
+                        if(piece.constructor.name === 'King' && piece.color === this._turn){
+                            king = piece;
+                        }
+                    }
+                });
+            });
+
+            chessPieces.forEach((row) => {
+                row.forEach((piece) => {
+                    if(piece !== 0){
+                        piece.possibleMoves.forEach((move) => {
+                            if(move[0] === king.position[0] && move[1] === king.position[1]) danger = true;
+                        });
+                    }
+                });
+            });
+
+            Map.kingInDanger = danger;
+            console.log(danger);
+        }
+
         this._changeTurn = () => {
             if(this._turn === 'white'){
                 this._turn = 'black';
@@ -35,7 +72,6 @@ export class ChessEngine{
         }
 
         this._showPossibleMoves = (piece, chessPieces) => {
-            piece.generatePossibleMoves();
             piece.possibleMoves.forEach((position) => {
                 const [x, y] = position;
                 if(chessPieces[x][y] === 0){
@@ -48,7 +84,6 @@ export class ChessEngine{
         }
 
         this._clearPossibleMoves = (piece) => {
-            piece.generatePossibleMoves();
             piece.possibleMoves.forEach((position) => {
                 const [x, y] = position;
                 document.querySelector(`.box${x}${y}`).innerHTML = '';
@@ -97,6 +132,8 @@ export class ChessEngine{
                     this._resetpick();
                     this._changeTurn();
                     updatePosition();
+                    this._updatePossibleMove(chessPieces);
+                    this._kingInDanger(chessPieces);
                 }
             }
         }
@@ -110,6 +147,10 @@ export class ChessEngine{
 
         }
     }
+    get updatePossibleMove(){
+        return this._updatePossibleMove;
+    }
+
     get applyFunctionality(){
         return this._applyFunctionality;
     }
