@@ -31,6 +31,32 @@ class ChessPiece{
                     }
                 }
             }
+            else if(this.name === 'Horse'){
+                if(x + 2 === xEnemy && y + 1 === yEnemy){
+                    this._possibleMoves.push([x + 2, y + 1]);
+                }
+                if(x + 2 === xEnemy && y - 1 === yEnemy){
+                    this._possibleMoves.push([x + 2, y - 1]);
+                }
+                if(x + 1 === xEnemy && y + 2 === yEnemy){
+                    this._possibleMoves.push([x + 1, y + 2]);
+                }
+                if(x + 1 === xEnemy && y - 2 === yEnemy){
+                    this._possibleMoves.push([x + 1, y - 2]);
+                }
+                if(x - 2 === xEnemy && y + 1 === yEnemy){
+                    this._possibleMoves.push([x - 2, y + 1]);
+                }
+                if(x - 2 === xEnemy && y - 1 === yEnemy){
+                    this._possibleMoves.push([x - 2, y - 1]);
+                }
+                if(x - 1 === xEnemy && y + 2 === yEnemy){
+                    this._possibleMoves.push([x - 1, y + 2]);
+                }
+                if(x - 1 === xEnemy && y - 2 === yEnemy){
+                    this._possibleMoves.push([x - 1, y - 2]);
+                }
+            }
             else if(this.name === 'Bishop'){
                 const temp1 = [];
                 const temp2 = [];
@@ -313,7 +339,7 @@ export class Horse extends ChessPiece{
             this._possibleMoves = [];
             const [x, y] = this.position;
 
-            if(x + 2 < 8 && y + 1 < 8&& !Map.checkColor(x+2, y+1, this.color)){
+            if(x + 2 < 8 && y + 1 < 8 && !Map.checkColor(x+2, y+1, this.color)){
                 this._possibleMoves.push([x + 2, y + 1]);
             }
             if(x + 2 < 8 && y - 1 >= 0 && !Map.checkColor(x+2, y-1, this.color)){
@@ -325,7 +351,7 @@ export class Horse extends ChessPiece{
             if(x + 1 < 8 && y - 2 >= 0 && !Map.checkColor(x+1, y-2, this.color)){
                 this._possibleMoves.push([x + 1, y - 2]);
             }
-            if(x - 2 >= 0 && y + 1 < 8  && !Map.checkColor(x-2, y+1, this.color)){
+            if(x - 2 >= 0 && y + 1 < 8 && !Map.checkColor(x-2, y+1, this.color)){
                 this._possibleMoves.push([x - 2, y + 1]);
             }
             if(x - 2 >= 0 && y - 1 >= 0 && !Map.checkColor(x-2, y-1, this.color)){
