@@ -16,8 +16,7 @@ export class ChessEngine{
             });
         }
 
-        this._kingInDanger = (chessPieces) => {
-            let danger = false;
+        this._findKing = (chessPieces) => {
             let king;
             chessPieces.forEach((row) => {
                 row.forEach((piece) => {
@@ -28,6 +27,12 @@ export class ChessEngine{
                     }
                 });
             });
+            return king;
+        }
+
+        this._kingInDanger = (chessPieces) => {
+            let danger = false;
+            const king = this._findKing(chessPieces);
 
             this._updatePossibleMove(chessPieces);
 
@@ -71,7 +76,7 @@ export class ChessEngine{
                 Map.positionMap[x][y] = 0;
                 const attacker = this._kingInDanger(chessPieces);
                 if(Map.kingInDanger){
-                    chessPieces[x][y].cantMove(attacker);
+                    chessPieces[x][y].cantMove(attacker, this._findKing(chessPieces));
                 }
                 Map.positionMap[x][y] = this._turn === 'black' ? 2 : 1;
             }
