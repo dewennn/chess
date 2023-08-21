@@ -38,6 +38,7 @@ export class Pawn extends ChessPiece{
 
         this._generatePossibleMoves = () => {
             const [x, y] = this.position;
+            this._possibleMoves = [];
             
             if(this.color === 'black'){
                 if(this._firstMove === true){
