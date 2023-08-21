@@ -69,6 +69,7 @@ export class ChessEngine{
                 }
                 else if(this._picked == true && chessPieces[x][y] !== 0 && chessPieces[x][y].color === 'white'){
                     this._resetChoice(chessPieces);
+                    updatePosition();
                     this._pickThis([x, y], chessPieces);
                 }
                 else if(this._picked == true){
@@ -103,6 +104,7 @@ export class ChessEngine{
                 }
                 else if(this._picked == true && chessPieces[x][y] !== 0 && chessPieces[x][y].color === 'black'){
                     this._resetChoice(chessPieces);
+                    updatePosition();
                     this._pickThis([x, y], chessPieces);
                 }
                 else if(this._picked == true){
