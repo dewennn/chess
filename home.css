@@ -48,3 +48,26 @@ div img{
     font-size: 50px;
     margin: 15px;
 }
+
+.box{
+    position: relative;
+}
+
+.piece{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.possible{
+    opacity: 20%;
+}
+
+.target{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 50%;
+}

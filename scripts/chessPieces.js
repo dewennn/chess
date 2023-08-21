@@ -30,9 +30,9 @@ export class Pawn extends ChessPiece{
                 if(this._firstMove === true){
                     if(Map.checkEmpty(x + 1, y)){
                         this._possibleMoves.push([x + 1, y]);
-                    }
-                    if(Map.checkEmpty(x + 2, y)){
-                        this._possibleMoves.push([x + 2, y]);
+                        if(Map.checkEmpty(x + 2, y)){
+                            this._possibleMoves.push([x + 2, y]);
+                        }
                     }
                     if(Map.checkWhite(x + 1, y + 1)){
                         this._possibleMoves.push([x + 1, y + 1]);
@@ -57,9 +57,9 @@ export class Pawn extends ChessPiece{
                 if(this._firstMove === true){
                     if(Map.checkEmpty(x - 1, y)){
                         this._possibleMoves.push([x - 1, y]);
-                    }
-                    if(Map.checkEmpty(x - 2, y)){
-                        this._possibleMoves.push([x - 2, y]);
+                        if(Map.checkEmpty(x - 2, y)){
+                            this._possibleMoves.push([x - 2, y]);
+                        }
                     }
                     if(Map.checkBlack(x - 1, y + 1)){
                         this._possibleMoves.push([x - 1, y + 1]);
@@ -69,7 +69,7 @@ export class Pawn extends ChessPiece{
                     }
                 }
                 else{
-                    if(Map.checkBlack(x - 1, y)){
+                    if(Map.checkEmpty(x - 1, y)){
                         this._possibleMoves.push([x - 1, y]);
                     }
                     if(Map.checkBlack(x - 1, y + 1)){
