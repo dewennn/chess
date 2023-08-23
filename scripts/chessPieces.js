@@ -231,225 +231,6 @@ class ChessPiece{
             });
             return result;
         }
-
-        this._cantMove = (attacker, king) => {
-            this._possibleMoves = [];
-            const [xEnemy, yEnemy] = attacker.position;
-            const [x, y] = this.position;
-            const blockable = this._canBeBlock(attacker, king);
-
-            if(this.name === 'Pawn'){
-                if(this.color === 'black'){
-                    if(this._firstMove === true && this._canBlock(blockable, [x+2, y]) === true){
-                        this.possibleMoves.push([x+2, y]);
-                    }
-                    if(this._canBlock(blockable, [x+1, y]) === true){
-                        this.possibleMoves.push([x+1, y]);
-                    }
-                    if(xEnemy === x+1 && yEnemy === y+1){
-                        this.possibleMoves.push([x+1, y+1]);
-                    }
-                    if(xEnemy === x+1 && yEnemy === y-1){
-                        this.possibleMoves.push([x+1, y-1]);
-                    }
-                }
-                else if(this.color === 'white'){
-                    if(this._firstMove === true && this._canBlock(blockable, [x-2, y]) === true){
-                        this.possibleMoves.push([x-2, y]);
-                    }
-                    if(this._canBlock(blockable, [x-1, y]) === true){
-                        this.possibleMoves.push([x-1, y]);
-                    }
-                    if(xEnemy === x-1 && yEnemy === y+1){
-                        this.possibleMoves.push([x-1, y+1]);
-                    }
-                    if(xEnemy === x-1 && yEnemy === y-1){
-                        this.possibleMoves.push([x-1, y-1]);
-                    }
-                }
-            }
-            else if(this.name === 'Horse'){
-                if((x + 2 === xEnemy && y + 1 === yEnemy) || this._canBlock(blockable, [x+2, y+1])){
-                    this._possibleMoves.push([x + 2, y + 1]);
-                }
-                if((x + 2 === xEnemy && y - 1 === yEnemy) || this._canBlock(blockable, [x+2, y-1])){
-                    this._possibleMoves.push([x + 2, y - 1]);
-                }
-                if((x + 1 === xEnemy && y + 2 === yEnemy) || this._canBlock(blockable, [x+1, y+2])){
-                    this._possibleMoves.push([x + 1, y + 2]);
-                }
-                if((x + 1 === xEnemy && y - 2 === yEnemy) || this._canBlock(blockable, [x+1, y-2])){
-                    this._possibleMoves.push([x + 1, y - 2]);
-                }
-                if((x - 2 === xEnemy && y + 1 === yEnemy) || this._canBlock(blockable, [x-2, y+1])){
-                    this._possibleMoves.push([x - 2, y + 1]);
-                }
-                if((x - 2 === xEnemy && y - 1 === yEnemy) || this._canBlock(blockable, [x-2, y-1])){
-                    this._possibleMoves.push([x - 2, y - 1]);
-                }
-                if((x - 1 === xEnemy && y + 2 === yEnemy) || this._canBlock(blockable, [x-1, y+2])){
-                    this._possibleMoves.push([x - 1, y + 2]);
-                }
-                if((x - 1 === xEnemy && y - 2 === yEnemy) || this._canBlock(blockable, [x-1, y-2])){
-                    this._possibleMoves.push([x - 1, y - 2]);
-                }
-            }
-            else if(this.name === 'Bishop'){
-                let xTemp = x, yTemp = y;
-
-                while(xTemp < 7 && yTemp < 7){
-                    xTemp++;
-                    yTemp++;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-
-                xTemp = x, yTemp = y;
-
-                while(xTemp < 7 && yTemp > 0){
-                    xTemp++;
-                    yTemp--;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-
-                xTemp = x, yTemp = y;
-
-                while(xTemp > 0 && yTemp < 7){
-                    xTemp--;
-                    yTemp++;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-
-                xTemp = x, yTemp = y;
-
-                while(xTemp > 0 && yTemp > 0){
-                    xTemp--;
-                    yTemp--;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-            }
-            else if(this.name === 'Rook'){
-                let xTemp = x, yTemp = y;
-
-                while(xTemp < 7){
-                    xTemp++;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-    
-                xTemp = x, yTemp = y;
-    
-                while(xTemp > 0){
-                    xTemp--;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-    
-                xTemp = x, yTemp = y;
-    
-                while(yTemp < 7){
-                    yTemp++;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-    
-                xTemp = x, yTemp = y;
-    
-                while(yTemp > 0){
-                    yTemp--;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-            }
-            else if(this.name === 'Queen'){
-                let xTemp = x, yTemp = y;
-
-                while(xTemp < 7 && yTemp < 7){
-                    xTemp++;
-                    yTemp++;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-
-                xTemp = x, yTemp = y;
-
-                while(xTemp < 7 && yTemp > 0){
-                    xTemp++;
-                    yTemp--;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-
-                xTemp = x, yTemp = y;
-
-                while(xTemp > 0 && yTemp < 7){
-                    xTemp--;
-                    yTemp++;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-
-                xTemp = x, yTemp = y;
-
-                while(xTemp > 0 && yTemp > 0){
-                    xTemp--;
-                    yTemp--;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-
-                xTemp = x, yTemp = y;
-
-                while(xTemp < 7){
-                    xTemp++;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-    
-                xTemp = x, yTemp = y;
-    
-                while(xTemp > 0){
-                    xTemp--;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-    
-                xTemp = x, yTemp = y;
-    
-                while(yTemp < 7){
-                    yTemp++;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-    
-                xTemp = x, yTemp = y;
-    
-                while(yTemp > 0){
-                    yTemp--;
-                    if(this._canBlock(blockable, [xTemp, yTemp])){
-                        this._possibleMoves.push([xTemp, yTemp]);
-                    }
-                }
-            }
-        }
     }
     get name(){
         return this._name;
@@ -539,6 +320,42 @@ export class Pawn extends ChessPiece{
                 }
             }
         }
+
+        this._cantMove = (attacker, king) => {
+            this._possibleMoves = [];
+            const [xEnemy, yEnemy] = attacker.position;
+            const [x, y] = this.position;
+            const blockable = this._canBeBlock(attacker, king);
+
+            if(this.color === 'black'){
+                if(this._firstMove === true && this._canBlock(blockable, [x+2, y]) === true){
+                    this.possibleMoves.push([x+2, y]);
+                }
+                if(this._canBlock(blockable, [x+1, y]) === true){
+                    this.possibleMoves.push([x+1, y]);
+                }
+                if(xEnemy === x+1 && yEnemy === y+1){
+                    this.possibleMoves.push([x+1, y+1]);
+                }
+                if(xEnemy === x+1 && yEnemy === y-1){
+                    this.possibleMoves.push([x+1, y-1]);
+                }
+            }
+            else if(this.color === 'white'){
+                if(this._firstMove === true && this._canBlock(blockable, [x-2, y]) === true){
+                    this.possibleMoves.push([x-2, y]);
+                }
+                if(this._canBlock(blockable, [x-1, y]) === true){
+                    this.possibleMoves.push([x-1, y]);
+                }
+                if(xEnemy === x-1 && yEnemy === y+1){
+                    this.possibleMoves.push([x-1, y+1]);
+                }
+                if(xEnemy === x-1 && yEnemy === y-1){
+                    this.possibleMoves.push([x-1, y-1]);
+                }
+            }
+        }
     }
     get firstMove(){
         return this._firstMove;
@@ -582,6 +399,38 @@ export class Horse extends ChessPiece{
                 this._possibleMoves.push([x - 1, y + 2]);
             }
             if(x - 1 >= 0 && y - 2 >= 0 && !Map.checkColor(x-1, y-2, this.color)){
+                this._possibleMoves.push([x - 1, y - 2]);
+            }
+        }
+
+        this._cantMove = (attacker, king) => {
+            this._possibleMoves = [];
+            const [xEnemy, yEnemy] = attacker.position;
+            const [x, y] = this.position;
+            const blockable = this._canBeBlock(attacker, king);
+
+            if((x + 2 === xEnemy && y + 1 === yEnemy) || this._canBlock(blockable, [x+2, y+1])){
+                this._possibleMoves.push([x + 2, y + 1]);
+            }
+            if((x + 2 === xEnemy && y - 1 === yEnemy) || this._canBlock(blockable, [x+2, y-1])){
+                this._possibleMoves.push([x + 2, y - 1]);
+            }
+            if((x + 1 === xEnemy && y + 2 === yEnemy) || this._canBlock(blockable, [x+1, y+2])){
+                this._possibleMoves.push([x + 1, y + 2]);
+            }
+            if((x + 1 === xEnemy && y - 2 === yEnemy) || this._canBlock(blockable, [x+1, y-2])){
+                this._possibleMoves.push([x + 1, y - 2]);
+            }
+            if((x - 2 === xEnemy && y + 1 === yEnemy) || this._canBlock(blockable, [x-2, y+1])){
+                this._possibleMoves.push([x - 2, y + 1]);
+            }
+            if((x - 2 === xEnemy && y - 1 === yEnemy) || this._canBlock(blockable, [x-2, y-1])){
+                this._possibleMoves.push([x - 2, y - 1]);
+            }
+            if((x - 1 === xEnemy && y + 2 === yEnemy) || this._canBlock(blockable, [x-1, y+2])){
+                this._possibleMoves.push([x - 1, y + 2]);
+            }
+            if((x - 1 === xEnemy && y - 2 === yEnemy) || this._canBlock(blockable, [x-1, y-2])){
                 this._possibleMoves.push([x - 1, y - 2]);
             }
         }
@@ -640,6 +489,53 @@ export class Bishop extends ChessPiece{
                 if(Map.checkColor(xTemp, yTemp, enemy)) break;
             }
         }
+
+        this._cantMove = (attacker, king) => {
+            this._possibleMoves = [];
+            const [xEnemy, yEnemy] = attacker.position;
+            const [x, y] = this.position;
+            const blockable = this._canBeBlock(attacker, king);
+
+            let xTemp = x, yTemp = y;
+
+                while(xTemp < 7 && yTemp < 7){
+                    xTemp++;
+                    yTemp++;
+                    if(this._canBlock(blockable, [xTemp, yTemp])){
+                        this._possibleMoves.push([xTemp, yTemp]);
+                    }
+                }
+
+                xTemp = x, yTemp = y;
+
+                while(xTemp < 7 && yTemp > 0){
+                    xTemp++;
+                    yTemp--;
+                    if(this._canBlock(blockable, [xTemp, yTemp])){
+                        this._possibleMoves.push([xTemp, yTemp]);
+                    }
+                }
+
+                xTemp = x, yTemp = y;
+
+                while(xTemp > 0 && yTemp < 7){
+                    xTemp--;
+                    yTemp++;
+                    if(this._canBlock(blockable, [xTemp, yTemp])){
+                        this._possibleMoves.push([xTemp, yTemp]);
+                    }
+                }
+
+                xTemp = x, yTemp = y;
+
+                while(xTemp > 0 && yTemp > 0){
+                    xTemp--;
+                    yTemp--;
+                    if(this._canBlock(blockable, [xTemp, yTemp])){
+                        this._possibleMoves.push([xTemp, yTemp]);
+                    }
+                }
+        }
     }
 }
 
@@ -689,6 +585,49 @@ export class Rook extends ChessPiece{
                 if(Map.checkColor(xTemp, yTemp, this.color)) break;
                 this._possibleMoves.push([xTemp, yTemp]);
                 if(Map.checkColor(xTemp, yTemp, enemy)) break;
+            }
+        }
+
+        this._cantMove = (attacker, king) => {
+            this._possibleMoves = [];
+            const [xEnemy, yEnemy] = attacker.position;
+            const [x, y] = this.position;
+            const blockable = this._canBeBlock(attacker, king);
+
+            let xTemp = x, yTemp = y;
+
+            while(xTemp < 7){
+                xTemp++;
+                if(this._canBlock(blockable, [xTemp, yTemp])){
+                    this._possibleMoves.push([xTemp, yTemp]);
+                }
+            }
+
+            xTemp = x, yTemp = y;
+
+            while(xTemp > 0){
+                xTemp--;
+                if(this._canBlock(blockable, [xTemp, yTemp])){
+                    this._possibleMoves.push([xTemp, yTemp]);
+                }
+            }
+
+            xTemp = x, yTemp = y;
+
+            while(yTemp < 7){
+                yTemp++;
+                if(this._canBlock(blockable, [xTemp, yTemp])){
+                    this._possibleMoves.push([xTemp, yTemp]);
+                }
+            }
+
+            xTemp = x, yTemp = y;
+
+            while(yTemp > 0){
+                yTemp--;
+                if(this._canBlock(blockable, [xTemp, yTemp])){
+                    this._possibleMoves.push([xTemp, yTemp]);
+                }
             }
         }
     }
@@ -780,6 +719,89 @@ export class Queen extends ChessPiece{
                 if(Map.checkColor(xTemp, yTemp, this.color)) break;
                 this._possibleMoves.push([xTemp, yTemp]);
                 if(Map.checkColor(xTemp, yTemp, enemy)) break;
+            }
+        }
+
+        this._cantMove = (attacker, king) => {
+            this._possibleMoves = [];
+            const [xEnemy, yEnemy] = attacker.position;
+            const [x, y] = this.position;
+            const blockable = this._canBeBlock(attacker, king);
+
+            let xTemp = x, yTemp = y;
+
+            while(xTemp < 7 && yTemp < 7){
+                xTemp++;
+                yTemp++;
+                if(this._canBlock(blockable, [xTemp, yTemp])){
+                    this._possibleMoves.push([xTemp, yTemp]);
+                }
+            }
+
+            xTemp = x, yTemp = y;
+
+            while(xTemp < 7 && yTemp > 0){
+                xTemp++;
+                yTemp--;
+                if(this._canBlock(blockable, [xTemp, yTemp])){
+                    this._possibleMoves.push([xTemp, yTemp]);
+                }
+            }
+
+            xTemp = x, yTemp = y;
+
+            while(xTemp > 0 && yTemp < 7){
+                xTemp--;
+                yTemp++;
+                if(this._canBlock(blockable, [xTemp, yTemp])){
+                    this._possibleMoves.push([xTemp, yTemp]);
+                }
+            }
+
+            xTemp = x, yTemp = y;
+
+            while(xTemp > 0 && yTemp > 0){
+                xTemp--;
+                yTemp--;
+                if(this._canBlock(blockable, [xTemp, yTemp])){
+                    this._possibleMoves.push([xTemp, yTemp]);
+                }
+            }
+
+            xTemp = x, yTemp = y;
+
+            while(xTemp < 7){
+                xTemp++;
+                if(this._canBlock(blockable, [xTemp, yTemp])){
+                    this._possibleMoves.push([xTemp, yTemp]);
+                }
+            }
+
+            xTemp = x, yTemp = y;
+
+            while(xTemp > 0){
+                xTemp--;
+                if(this._canBlock(blockable, [xTemp, yTemp])){
+                    this._possibleMoves.push([xTemp, yTemp]);
+                }
+            }
+
+            xTemp = x, yTemp = y;
+
+            while(yTemp < 7){
+                yTemp++;
+                if(this._canBlock(blockable, [xTemp, yTemp])){
+                    this._possibleMoves.push([xTemp, yTemp]);
+                }
+            }
+
+            xTemp = x, yTemp = y;
+
+            while(yTemp > 0){
+                yTemp--;
+                if(this._canBlock(blockable, [xTemp, yTemp])){
+                    this._possibleMoves.push([xTemp, yTemp]);
+                }
             }
         }
     }
