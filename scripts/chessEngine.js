@@ -6,54 +6,9 @@ export class ChessEngine{
         this._startPosition;
         this._picked = false;
 
-        this._updatePossibleMove = (chessPieces) => {
-            chessPieces.forEach((row) => {
-                row.forEach((piece) => {
-                    if(piece !== 0){
-                        piece.generatePossibleMoves();
-                    }
-                });
-            });
-        }
-
-        this._findKing = (chessPieces) => {
-            let king;
-            chessPieces.forEach((row) => {
-                row.forEach((piece) => {
-                    if(piece !== 0){
-                        if(piece.name === 'King' && piece.color === this._turn){
-                            king = piece;
-                        }
-                    }
-                });
-            });
-            return king;
-        }
-
-        this._kingInDanger = (chessPieces) => {
-            let danger = false;
-            const king = this._findKing(chessPieces);
-
-            this._updatePossibleMove(chessPieces);
-
-            let attacker;
-
-            chessPieces.forEach((row) => {
-                row.forEach((piece) => {
-                    if(piece !== 0){
-                        piece.possibleMoves.forEach((move) => {
-                            if(move[0] === king.position[0] && move[1] === king.position[1]){
-                                danger = true;
-                                attacker = piece;
-                            }
-                        });
-                    }
-                });
-            });
-
-            console.log(danger);
-            Map.kingInDanger = danger;
-            return attacker;
+        this._resetpick = () => {
+            this._startPosition = null;
+            this._picked = false;
         }
 
         this._changeTurn = () => {
@@ -67,31 +22,14 @@ export class ChessEngine{
             }
         }
 
-        this._pickThis = (position, chessPieces) => {
-            const [x, y] = position;
-            this._resetpick();
-            document.querySelector(`.box${x}${y}`).classList.add('selected');
-
-            if(chessPieces[x][y].name !== 'King'){
-                Map.positionMap[x][y] = 0;
-                const attacker = this._kingInDanger(chessPieces);
-                if(Map.kingInDanger){
-                    chessPieces[x][y].cantMove(attacker, this._findKing(chessPieces));
-                }
-                Map.positionMap[x][y] = this._turn === 'black' ? 2 : 1;
-            }
-
-            this._showPossibleMoves(chessPieces[x][y], chessPieces);
-            this._startPosition = [x, y];
-            this._picked = true;
-        }
-
-        this._resetChoice = (chessPieces) => {
-            if(this._picked === true){
-                document.querySelector(`.box${this._startPosition[0]}${this._startPosition[1]}`).classList.remove('selected');
-                this._clearPossibleMoves(chessPieces[this._startPosition[0]][this._startPosition[1]]);
-                this._resetpick();
-            }
+        this._updatePossibleMove = (chessPieces) => {
+            chessPieces.forEach((row) => {
+                row.forEach((piece) => {
+                    if(piece !== 0){
+                        piece.generatePossibleMoves();
+                    }
+                });
+            });
         }
 
         this._showPossibleMoves = (piece, chessPieces) => {
@@ -113,9 +51,66 @@ export class ChessEngine{
             });
         }
 
-        this._resetpick = () => {
-            this._startPosition = null;
-            this._picked = false;
+        this._findKing = (chessPieces) => {
+            let king;
+            chessPieces.forEach((row) => {
+                row.forEach((piece) => {
+                    if(piece !== 0){
+                        if(piece.name === 'King' && piece.color === this._turn){
+                            king = piece;
+                        }
+                    }
+                });
+            });
+            return king;
+        }
+
+        this._kingInDanger = (chessPieces) => {
+            let attacker = null;
+            const king = this._findKing(chessPieces);
+
+            this._updatePossibleMove(chessPieces);
+
+            chessPieces.forEach((row) => {
+                row.forEach((piece) => {
+                    if(piece !== 0){
+                        piece.possibleMoves.forEach((move) => {
+                            if(move[0] === king.position[0] && move[1] === king.position[1]){
+                                attacker = piece;
+                            }
+                        });
+                    }
+                });
+            });
+
+            return attacker;
+        }
+
+        this._pickThis = (position, chessPieces) => {
+            const [x, y] = position;
+            this._resetpick();
+            document.querySelector(`.box${x}${y}`).classList.add('selected');
+
+            if(chessPieces[x][y].name !== 'King'){
+                Map.positionMap[x][y] = 0;
+                const attacker = this._kingInDanger(chessPieces);
+                if(attacker){
+                    chessPieces[x][y].cantMove(attacker, this._findKing(chessPieces));
+                }
+                Map.positionMap[x][y] = this._turn === 'black' ? 2 : 1;
+            }
+
+            this._showPossibleMoves(chessPieces[x][y], chessPieces);
+            this._startPosition = [x, y];
+            this._picked = true;
+        }
+
+        this._resetChoice = (chessPieces) => {
+            if(this._picked === true){
+                document.querySelector(`.box${this._startPosition[0]}${this._startPosition[1]}`).classList.remove('selected');
+                this._clearPossibleMoves(chessPieces[this._startPosition[0]][this._startPosition[1]]);
+                this._resetpick();
+            }
         }
 
         this._pickPosition = (position, chessPieces, clearPosition, updatePosition) => {
