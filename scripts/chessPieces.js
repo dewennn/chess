@@ -30,6 +30,9 @@ export class ChessPiece{
     get addPossibleMoves(){
         return this._addPossibleMoves;
     }
+    get clearPossibleMoves(){
+        return this._clearPossibleMoves;
+    }
 }
 
 export class Pawn extends ChessPiece{

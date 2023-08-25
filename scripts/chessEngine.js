@@ -1,7 +1,10 @@
+import { PositionManager } from "./positionManager.js";
+
 export class ChessEngine{
     constructor(chessPieces, display){
         this._chessPieces = chessPieces;
         this._display = display;
+        this._positionManager = new PositionManager(this._chessPieces);
 
         this._turn = "white";
         this._startPosition;
@@ -24,9 +27,13 @@ export class ChessEngine{
         }
 
         this._pickThis = (position) => {
+            console.log(this._chessPieces);
             const [x, y] = position;
             this._resetpick();
             document.querySelector(`.box${x}${y}`).classList.add('selected');
+
+            this._positionManager.updatePossibleMove(this._turn);
+
             this._display.showPossibleMoves(this._chessPieces[x][y]);
             this._startPosition = [x, y];
             this._picked = true;
@@ -48,6 +55,7 @@ export class ChessEngine{
             }
             else if(this._picked == true && chessPieces[x][y] !== 0 && chessPieces[x][y].color === this._turn){
                 this._resetChoice(chessPieces);
+                display.updateChessPosition();
                 this._pickThis([x, y]);
             }
             else if(this._picked == true){
@@ -59,19 +67,14 @@ export class ChessEngine{
                 });
 
                 if(validMove === true){
-                    if(chessPieces[x][y] !== 0){
-                        chessPieces[x][y] = 0;
-                    }
-
                     document.querySelector(`.box${this._startPosition[0]}${this._startPosition[1]}`).classList.remove('selected');
                     this._display.clearPossibleMoves(pieceToMove);
                     this._display.clearPosition();
 
                     pieceToMove.position = [x, y];
                     
-                    const temp = this._chessPieces[this._startPosition[0]][this._startPosition[1]];
-                    this._chessPieces[this._startPosition[0]][this._startPosition[1]] = this._chessPieces[x][y];
-                    this._chessPieces[x][y] = temp;
+                    this._chessPieces[x][y] = this._chessPieces[this._startPosition[0]][this._startPosition[1]];
+                    this._chessPieces[this._startPosition[0]][this._startPosition[1]] = 0;
 
                     this._resetpick();
                     this._changeTurn();
