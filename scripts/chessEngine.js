@@ -27,7 +27,6 @@ export class ChessEngine{
         }
 
         this._pickThis = (position) => {
-            console.log(this._chessPieces);
             const [x, y] = position;
             this._resetpick();
             document.querySelector(`.box${x}${y}`).classList.add('selected');
@@ -72,6 +71,9 @@ export class ChessEngine{
                     this._display.clearPosition();
 
                     pieceToMove.position = [x, y];
+                    if(pieceToMove.name === 'Pawn'){
+                        pieceToMove.firstMoveFalse();
+                    }
                     
                     this._chessPieces[x][y] = this._chessPieces[this._startPosition[0]][this._startPosition[1]];
                     this._chessPieces[this._startPosition[0]][this._startPosition[1]] = 0;

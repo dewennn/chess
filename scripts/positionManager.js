@@ -127,7 +127,6 @@ export class PositionManager{
                         }
                     }
                     if(this._checkColor(x - 1, y + 1, 'black') && !this._checkKing([x, y], [x-1, y+1], piece.color)){
-                        console.log(this._checkColor(x - 1, y + 1, 'black'));
                         piece.addPossibleMoves([x - 1, y + 1]);
                     }
                     if(this._checkColor(x - 1, y - 1, 'black') && !this._checkKing([x, y], [x-1, y-1], piece.color)){
@@ -280,7 +279,7 @@ export class PositionManager{
                 xTemp++;
                 yTemp++;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -291,7 +290,7 @@ export class PositionManager{
                 xTemp++;
                 yTemp--;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -302,7 +301,7 @@ export class PositionManager{
                 xTemp--;
                 yTemp++;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -313,7 +312,7 @@ export class PositionManager{
                 xTemp--;
                 yTemp--;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -377,7 +376,7 @@ export class PositionManager{
             while(xTemp < 7){
                 xTemp++;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -387,7 +386,7 @@ export class PositionManager{
             while(xTemp > 0){
                 xTemp--;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -397,7 +396,7 @@ export class PositionManager{
             while(yTemp < 7){
                 yTemp++;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -407,7 +406,7 @@ export class PositionManager{
             while(yTemp > 0){
                 yTemp--;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -468,7 +467,7 @@ export class PositionManager{
                 xTemp++;
                 yTemp++;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -479,7 +478,7 @@ export class PositionManager{
                 xTemp++;
                 yTemp--;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -490,7 +489,7 @@ export class PositionManager{
                 xTemp--;
                 yTemp++;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -501,7 +500,7 @@ export class PositionManager{
                 xTemp--;
                 yTemp--;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -511,7 +510,7 @@ export class PositionManager{
             while(xTemp < 7){
                 xTemp++;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -521,7 +520,7 @@ export class PositionManager{
             while(xTemp > 0){
                 xTemp--;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -531,7 +530,7 @@ export class PositionManager{
             while(yTemp < 7){
                 yTemp++;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -541,7 +540,7 @@ export class PositionManager{
             while(yTemp > 0){
                 yTemp--;
                 if(this._checkColor(xTemp, yTemp, piece.color)) break;
-                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) break;
+                if(this._checkKing([x, y], [xTemp, yTemp], piece.color)) continue;
                 piece.addPossibleMoves([xTemp, yTemp]);
                 if(this._checkColor(xTemp, yTemp, enemy)) break;
             }
@@ -630,6 +629,66 @@ export class PositionManager{
             }
         }
 
+        this._king = (piece) => {
+            const [x, y] = piece.position;
+            piece.clearPossibleMoves();
+
+            if(x + 1 < 8 && y + 1 < 8 && !this._checkColor(x+1, y+1, piece.color) && !this._checkKing([x, y], [x+1, y+1], piece.color)){
+                piece.addPossibleMoves([x + 1, y + 1]);
+            }
+            if(x + 1 < 8 && y - 1 >= 0 && !this._checkColor(x+1, y-1, piece.color) && !this._checkKing([x, y], [x+1, y-1], piece.color)){
+                piece.addPossibleMoves([x + 1, y - 1]);
+            }
+            if(x - 1 >= 0 && y + 1 < 8 && !this._checkColor(x-1, y+1, piece.color) && !this._checkKing([x, y], [x-1, y+1], piece.color)){
+                piece.addPossibleMoves([x - 1, y + 1]);
+            }
+            if(x - 1 >= 0 && y - 1 >= 0 && !this._checkColor(x-1, y-1, piece.color) && !this._checkKing([x, y], [x-1, y-1], piece.color)){
+                piece.addPossibleMoves([x - 1, y - 1]);
+            }
+            if(x + 1 < 8 && !this._checkColor(x+1, y, piece.color) && !this._checkKing([x, y], [x+1, y], piece.color)){
+                piece.addPossibleMoves([x + 1, y]);
+            }
+            if(x - 1 >= 0 && !this._checkColor(x-1, y, piece.color) && !this._checkKing([x, y], [x-1, y], piece.color)){
+                piece.addPossibleMoves([x - 1, y]);
+            }
+            if(y + 1 < 8 && !this._checkColor(x, y+1, piece.color) && !this._checkKing([x, y], [x, y+1], piece.color)){
+                piece.addPossibleMoves([x, y + 1]);
+            }
+            if(y - 1 >= 0 && !this._checkColor(x, y-1, piece.color) && !this._checkKing([x, y], [x, y-1], piece.color)){
+                piece.addPossibleMoves([x, y - 1]);
+            }
+        }
+
+        this._kingEnemy = (piece) => {
+            const [x, y] = piece.position;
+            piece.clearPossibleMoves();
+
+            if(x + 1 < 8 && y + 1 < 8 && !this._checkColor(x+1, y+1, piece.color)){
+                piece.addPossibleMoves([x + 1, y + 1]);
+            }
+            if(x + 1 < 8 && y - 1 >= 0 && !this._checkColor(x+1, y-1, piece.color)){
+                piece.addPossibleMoves([x + 1, y - 1]);
+            }
+            if(x - 1 >= 0 && y + 1 < 8 && !this._checkColor(x-1, y+1, piece.color)){
+                piece.addPossibleMoves([x - 1, y + 1]);
+            }
+            if(x - 1 >= 0 && y - 1 >= 0 && !this._checkColor(x-1, y-1, piece.color)){
+                piece.addPossibleMoves([x - 1, y - 1]);
+            }
+            if(x + 1 < 8 && !this._checkColor(x+1, y, piece.color)){
+                piece.addPossibleMoves([x + 1, y]);
+            }
+            if(x - 1 >= 0 && !this._checkColor(x-1, y, piece.color)){
+                piece.addPossibleMoves([x - 1, y]);
+            }
+            if(y + 1 < 8 && !this._checkColor(x, y+1, piece.color)){
+                piece.addPossibleMoves([x, y + 1]);
+            }
+            if(y - 1 >= 0 && !this._checkColor(x, y-1, piece.color)){
+                piece.addPossibleMoves([x, y - 1]);
+            }
+        }
+
         this._updatePossibleMove = (color) => {
             this._chessPieces.forEach((line) => {
                 line.forEach((piece) => {
@@ -648,6 +707,9 @@ export class PositionManager{
                         }
                         else if(piece.name === 'Queen'){
                             this._queen(piece);
+                        }
+                        else if(piece.name === 'King'){
+                            this._king(piece);
                         }
                     }
                 });
@@ -672,6 +734,9 @@ export class PositionManager{
                         }
                         else if(piece.name === 'Queen'){
                             this._queenEnemy(piece);
+                        }
+                        else if(piece.name === 'King'){
+                            this._kingEnemy(piece);
                         }
                     }
                 });
