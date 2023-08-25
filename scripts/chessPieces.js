@@ -36,6 +36,15 @@ export class Pawn extends ChessPiece{
     constructor(color, position){
         super(color, position);
         this._name = 'Pawn';
+        this._firstMove = true;
+    }
+    get firstMove(){
+        return this._firstMove;
+    }
+    get firstMoveFalse(){
+        return () => {
+            this._firstMove = false;
+        }
     }
 }
 

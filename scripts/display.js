@@ -18,7 +18,6 @@ export class Display{
             this._chessPieces.forEach((row) => {
                 row.forEach((piece) => {
                     if(piece !== 0){
-                        console.log(piece);
                         const [x, y] = piece.position;
                         document.querySelector(`.box${x}${y}`).innerHTML = `<img class="piece" src="source/${piece.color}${piece.name}.png" alt="">`;
                     }

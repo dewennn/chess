@@ -16,8 +16,7 @@ export class ChessBoard{
         ];
 
         this._display = new Display(this._chessPieces);
-        this._engine = new ChessEngine(this._chessPieces, display);
-
+        this._engine = new ChessEngine(this._chessPieces, this._display);
 
         this._setChessboardBase = () => {
             let html = '';
@@ -42,5 +41,6 @@ export class ChessBoard{
         this._setChessboardBase();
         this._display.clearPosition();
         this._display.updateChessPosition();
+        this._engine.run;
     }
 }
