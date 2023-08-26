@@ -2,6 +2,8 @@ import { PositionManager } from "./positionManager.js";
 
 export class ChessEngine{
     constructor(chessPieces, display){
+        let game = true;
+
         this._chessPieces = chessPieces;
         this._display = display;
         this._positionManager = new PositionManager(this._chessPieces);
@@ -38,10 +40,10 @@ export class ChessEngine{
             this._picked = true;
         }
 
-        this._resetChoice = (chessPieces) => {
+        this._resetChoice = () => {
             if(this._picked === true){
                 document.querySelector(`.box${this._startPosition[0]}${this._startPosition[1]}`).classList.remove('selected');
-                this._display.clearPossibleMoves(chessPieces[this._startPosition[0]][this._startPosition[1]]);
+                this._display.clearPossibleMoves(this._chessPieces[this._startPosition[0]][this._startPosition[1]]);
                 this._resetpick();
             }
         }
@@ -49,15 +51,15 @@ export class ChessEngine{
         this._pickPosition = (position) => {
             const [x, y] = [Number(position[0]), Number(position[1])];
             
-            if(this._picked == false && this._chessPieces[x][y] !== 0 && this._chessPieces[x][y].color === this._turn){
+            if(this._picked == false && this._chessPieces[x][y] !== 0 && this._chessPieces[x][y].color === this._turn && game === true){
                 this._pickThis([x, y]);
             }
-            else if(this._picked == true && chessPieces[x][y] !== 0 && chessPieces[x][y].color === this._turn){
-                this._resetChoice(chessPieces);
+            else if(this._picked == true && chessPieces[x][y] !== 0 && chessPieces[x][y].color === this._turn && game === true){
+                this._resetChoice();
                 display.updateChessPosition();
                 this._pickThis([x, y]);
             }
-            else if(this._picked == true){
+            else if(this._picked == true && game === true){
                 let validMove = false;
                 const pieceToMove = this._chessPieces[this._startPosition[0]][this._startPosition[1]];
 
@@ -82,6 +84,19 @@ export class ChessEngine{
                     this._changeTurn();
 
                     this._display.updateChessPosition();
+
+                    this._positionManager.checkmate(this._turn);
+                    const checker = this._positionManager.checkmate(this._turn);
+
+                    if(checker === 'checkmate'){
+                        const enemy = this._turn === 'white' ? 'BLACK' : 'WHITE'; 
+                        document.querySelector('.turn').innerHTML = `${enemy} WIN`;
+                        game = false;
+                    }
+                    else if(checker === 'stalemate'){
+                        document.querySelector('.turn').innerHTML = 'STALEMATE';
+                        game = false;
+                    }
                 }
             }
         }

@@ -87,6 +87,38 @@ export class PositionManager{
             }
         }
 
+        this._checkMate = (color) => {
+            let onlyKings = true;
+
+            this._chessPieces.forEach((line) => {
+                line.forEach((piece) => {
+                    if(piece !== 0 && piece.name !== 'King'){
+                        onlyKings = false;
+                    }
+                });
+            });
+
+            if(onlyKings) return 'stalemate';
+
+            const danger = this._kingInDanger(color);
+            this._updatePossibleMove(color);
+            let cantMove = true;
+
+            this._chessPieces.forEach((line) => {
+                line.forEach((piece) => {
+                    if(piece !== 0 && piece.color === color){
+                        if(piece.possibleMoves.length > 0){
+                            cantMove = false;
+                        }
+                    }
+                });
+            });
+            
+            if(cantMove && danger) return 'checkmate';
+            else if(cantMove && !danger) return 'stalemate';
+            else return 'play';
+        }
+
         this._pawn = (piece) => {
             const [x, y] = piece.position;
             piece.clearPossibleMoves();
@@ -745,5 +777,8 @@ export class PositionManager{
     }
     get updatePossibleMove(){
         return this._updatePossibleMove;
+    }
+    get checkmate(){
+        return this._checkMate;
     }
 }
