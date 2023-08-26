@@ -25,6 +25,28 @@ export class PositionManager{
             }
         }
 
+        this._positionThreat = (x, y, color) => {
+            let result = false;
+
+            this._chessPieces.forEach((row) => {
+                row.forEach((piece) => {
+                    if(piece !== 0 && piece.color === color){
+                        piece.possibleMoves.forEach((move) => {
+                            if(move[0] === x && move[1] === y){
+                                result = true;
+                            }
+                        });
+                    }
+                });
+            });
+            
+            if(y !== 0 && y !== 4 && y !== 7){
+                if(this._checkEmpty(x, y) === false) result = true;
+            }
+
+            return result;
+        }
+
         this._findKing = (color) => {
             let king;
             this._chessPieces.forEach((row) => {
@@ -44,7 +66,6 @@ export class PositionManager{
             let result = false;
 
             this._chessPieces.forEach((row) => {
-
                 row.forEach((piece) => {
                     if(piece !== 0 && piece.color === enemy){
                         piece.possibleMoves.forEach((move) => {
@@ -86,7 +107,6 @@ export class PositionManager{
                 return false;
             }
         }
-
         this._checkMate = (color) => {
             let onlyKings = true;
 
@@ -688,6 +708,29 @@ export class PositionManager{
             }
             if(y - 1 >= 0 && !this._checkColor(x, y-1, piece.color) && !this._checkKing([x, y], [x, y-1], piece.color)){
                 piece.addPossibleMoves([x, y - 1]);
+            }
+
+            if(piece.color === 'black'){
+                this._updatePossibleMoveEnemy('white');
+
+                if(!this._positionThreat(0, 0, 'white') && !this._positionThreat(0, 1, 'white') && !this._positionThreat(0, 2, 'white') && !this._positionThreat(0, 3, 'white') && !this._positionThreat(0, 4, 'white') && this._chessPieces[0][0].firstMove === true && piece.firstMove == true){
+                    piece.addPossibleMoves([x, y - 2]);
+                }
+
+                if(!this._positionThreat(0, 4, 'white') && !this._positionThreat(0, 5, 'white') && !this._positionThreat(0, 6, 'white') && !this._positionThreat(0, 7, 'white') && this._chessPieces[0][7].firstMove === true && piece.firstMove == true){
+                    piece.addPossibleMoves([x, y + 2]);
+                }
+            }
+            else if(piece.color === 'white'){
+                this._updatePossibleMoveEnemy('black');
+
+                if(!this._positionThreat(7, 0, 'black') && !this._positionThreat(7, 1, 'black') && !this._positionThreat(7, 2, 'black') && !this._positionThreat(7, 3, 'black') && !this._positionThreat(7, 4, 'black') && this._chessPieces[7][0].firstMove == true && piece.firstMove == true){
+                    piece.addPossibleMoves([x, y - 2]);
+                }
+
+                if(!this._positionThreat(7, 4, 'black') && !this._positionThreat(7, 5, 'black') && !this._positionThreat(7, 6, 'black') && !this._positionThreat(7, 7, 'black') && this._chessPieces[7][7].firstMove == true && piece.firstMove == true){
+                    piece.addPossibleMoves([x, y + 2]);
+                }
             }
         }
 

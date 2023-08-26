@@ -69,6 +69,15 @@ export class Rook extends ChessPiece{
     constructor(color, position){
         super(color, position);
         this._name = 'Rook';
+        this._firstMove = true;
+    }
+    get firstMove(){
+        return this._firstMove;
+    }
+    get firstMoveFalse(){
+        return () => {
+            this._firstMove = false;
+        }
     }
 }
 
@@ -83,5 +92,14 @@ export class King extends ChessPiece{
     constructor(color, position){
         super(color, position);
         this._name = 'King';
+        this._firstMove = true;
+    }
+    get firstMove(){
+        return this._firstMove;
+    }
+    get firstMoveFalse(){
+        return () => {
+            this._firstMove = false;
+        }
     }
 }

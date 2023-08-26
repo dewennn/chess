@@ -73,7 +73,36 @@ export class ChessEngine{
                     this._display.clearPosition();
 
                     pieceToMove.position = [x, y];
-                    if(pieceToMove.name === 'Pawn'){
+                    if(pieceToMove.name === 'Pawn' || pieceToMove.name === 'King' || pieceToMove.name === 'Rook'){
+                        if(pieceToMove.color === 'black' && pieceToMove.name === 'King'){
+                            if(y === 2){
+                                this._chessPieces[0][3] = this._chessPieces[0][0];
+                                this._chessPieces[0][0] = 0;
+                                this._chessPieces[0][3].position = [0, 3];
+                                this._chessPieces[0][3].firstMoveFalse();
+                            }
+                            else if(y === 6){
+                                this._chessPieces[0][5] = this._chessPieces[0][7];
+                                this._chessPieces[0][7] = 0;
+                                this._chessPieces[0][5].position = [0, 5];
+                                this._chessPieces[0][5].firstMoveFalse();
+                            }
+                        }
+                        else if(pieceToMove.color === 'white' && pieceToMove.name === 'King'){
+                            if(y === 2){
+                                this._chessPieces[7][3] = this._chessPieces[7][0];
+                                this._chessPieces[7][0] = 0;
+                                this._chessPieces[7][3].position = [7, 3];
+                                this._chessPieces[7][3].firstMoveFalse();
+                            }
+                            else if(y === 6){
+                                this._chessPieces[7][5] = this._chessPieces[7][7];
+                                this._chessPieces[7][7] = 0;
+                                this._chessPieces[7][5].position = [7, 5];
+                                this._chessPieces[7][5].firstMoveFalse();
+                            }
+                        }
+
                         pieceToMove.firstMoveFalse();
                     }
                     
