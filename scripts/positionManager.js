@@ -145,9 +145,9 @@ export class PositionManager{
 
             if(piece.color === 'black'){
                 if(piece.firstMove === true){
-                    if(this._checkEmpty(x + 1, y) && !this._checkKing([x, y], [x+1, y], piece.color)){
+                    if(x + 1 < 8 && this._checkEmpty(x + 1, y) && !this._checkKing([x, y], [x+1, y], piece.color)){
                         piece.addPossibleMoves([x + 1, y]);
-                        if(this._checkEmpty(x + 2, y) && !this._checkKing([x, y], [x+2, y], piece.color)){
+                        if(x + 2 < 8 && this._checkEmpty(x + 2, y) && !this._checkKing([x, y], [x+2, y], piece.color)){
                             piece.addPossibleMoves([x + 2, y]);
                         }
                     }
@@ -159,7 +159,7 @@ export class PositionManager{
                     }
                 }
                 else{
-                    if(this._checkEmpty(x + 1, y) && !this._checkKing([x, y], [x+1, y], piece.color)){
+                    if(x + 1 < 8 && this._checkEmpty(x + 1, y) && !this._checkKing([x, y], [x+1, y], piece.color)){
                         piece.addPossibleMoves([x + 1, y]);
                     }
                     if(this._checkColor(x + 1, y + 1, 'white') && !this._checkKing([x, y], [x+1, y+1], piece.color)){
@@ -172,9 +172,9 @@ export class PositionManager{
             }
             else if(piece.color === 'white'){
                 if(piece.firstMove === true){
-                    if(this._checkEmpty(x - 1, y) && !this._checkKing([x, y], [x-1, y], piece.color)){
+                    if(x - 1 >= 0 && this._checkEmpty(x - 1, y) && !this._checkKing([x, y], [x-1, y], piece.color)){
                         piece.addPossibleMoves([x - 1, y]);
-                        if(this._checkEmpty(x - 2, y) && !this._checkKing([x, y], [x-2, y], piece.color)){
+                        if(x - 2 >= 0 && this._checkEmpty(x - 2, y) && !this._checkKing([x, y], [x-2, y], piece.color)){
                             piece.addPossibleMoves([x - 2, y]);
                         }
                     }
@@ -186,7 +186,7 @@ export class PositionManager{
                     }
                 }
                 else{
-                    if(this._checkEmpty(x - 1, y) && !this._checkKing([x, y], [x-1, y], piece.color)){
+                    if(x - 1 >= 0 && this._checkEmpty(x - 1, y) && !this._checkKing([x, y], [x-1, y], piece.color)){
                         piece.addPossibleMoves([x - 1, y]);
                     }
                     if(this._checkColor(x - 1, y + 1, 'black') && !this._checkKing([x, y], [x-1, y+1], piece.color)){
@@ -205,9 +205,9 @@ export class PositionManager{
 
             if(piece.color === 'black'){
                 if(piece.firstMove === true){
-                    if(this._checkEmpty(x + 1, y)){
+                    if(x + 1 < 8 && this._checkEmpty(x + 1, y)){
                         piece.addPossibleMoves([x + 1, y]);
-                        if(this._checkEmpty(x + 2, y)){
+                        if(x + 2 < 8 && this._checkEmpty(x + 2, y)){
                             piece.addPossibleMoves([x + 2, y]);
                         }
                     }
@@ -219,7 +219,7 @@ export class PositionManager{
                     }
                 }
                 else{
-                    if(this._checkEmpty(x + 1, y)){
+                    if(x + 1 < 8 && this._checkEmpty(x + 1, y)){
                         piece.addPossibleMoves([x + 1, y]);
                     }
                     if(this._checkColor(x + 1, y + 1, 'white')){
@@ -232,9 +232,9 @@ export class PositionManager{
             }
             else if(piece.color === 'white'){
                 if(piece.firstMove === true){
-                    if(this._checkEmpty(x - 1, y)){
+                    if(x - 1 >= 0 && this._checkEmpty(x - 1, y)){
                         piece.addPossibleMoves([x - 1, y]);
-                        if(this._checkEmpty(x - 2, y)){
+                        if(x - 2 >= 0 && this._checkEmpty(x - 2, y)){
                             piece.addPossibleMoves([x - 2, y]);
                         }
                     }
@@ -246,7 +246,7 @@ export class PositionManager{
                     }
                 }
                 else{
-                    if(this._checkEmpty(x - 1, y)){
+                    if(x - 1 >= 0 && this._checkEmpty(x - 1, y)){
                         piece.addPossibleMoves([x - 1, y]);
                     }
                     if(this._checkColor(x - 1, y + 1, 'black')){
