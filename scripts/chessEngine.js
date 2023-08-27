@@ -151,7 +151,11 @@ export class ChessEngine{
                         pieceToMove.firstMoveFalse();
                     }
                     
-                    this._chessPieces[x][y] = this._chessPieces[this._startPosition[0]][this._startPosition[1]];
+                    if(this._chessPieces[x][y] !== 0){
+                        document.querySelector(`.dead${this._chessPieces[x][y].color}`).innerHTML += `<div><img src="source/${this._chessPieces[x][y].color}${this._chessPieces[x][y].name}.png" alt=""></div>`;
+                    }
+
+                    this._chessPieces[x][y] = pieceToMove;
                     this._chessPieces[this._startPosition[0]][this._startPosition[1]] = 0;
 
                     if(pieceToMove.name === 'Pawn' && (pieceToMove.position[0] === 0 || pieceToMove.position[0] === 7)){

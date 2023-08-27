@@ -1,0 +1,31 @@
+.deadwhite-container{
+    margin-top: 444px;
+}
+
+.deadwhite{
+    display: grid;
+    grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px;
+    grid-template-rows: 40px 40px;
+}
+
+.deadwhite img{
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+}
+
+.deadblack-container{
+    margin-left: 30px;
+}
+
+.deadblack{
+    display: grid;
+    grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px;
+    grid-template-rows: 40px 40px;
+}
+
+.deadblack img{
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+}

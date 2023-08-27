@@ -1,0 +1,37 @@
+.pick-white-container{
+    margin-right: 50px;
+}
+
+.pick-white{
+    opacity: 0;
+    display: grid;
+    grid-template-columns: 75px 75px 75px 75px;
+    grid-template-rows: 75px;
+    column-gap: 0px;
+    row-gap: 0px;
+}
+
+.pick-black-container{
+    margin-top: 444px;
+    margin-left: 50px;
+}
+
+.pick-black{
+    opacity: 0;
+    display: grid;
+    grid-template-columns: 75px 75px 75px 75px;
+    grid-template-rows: 75px;
+    column-gap: 0px;
+    row-gap: 0px;
+}
+
+.available{
+    opacity: 100%;
+}
+
+.gray{
+    background-color: gray;
+}
+.gray :hover{
+    background-color: rgb(189, 199, 72);
+}

@@ -9,70 +9,6 @@ div img{
     object-fit: contain;
 }
 
-.chessboard-position{
-    display: flex;
-    align-items: start;
-    justify-content: center;
-}
-
-.chessboard-container{
-    display: inline-block;
-}
-
-.chessboard{
-    display: grid;
-    grid-template-columns: 75px 75px 75px 75px 75px 75px 75px 75px;
-    grid-template-rows: 75px 75px 75px 75px 75px 75px 75px 75px;
-    column-gap: 0px;
-    row-gap: 0px;
-}
-
-.pick-white-container{
-    margin-right: 50px;
-}
-
-.pick-white{
-    opacity: 0;
-    display: grid;
-    grid-template-columns: 75px 75px 75px 75px;
-    grid-template-rows: 75px;
-    column-gap: 0px;
-    row-gap: 0px;
-}
-
-.pick-black-container{
-    margin-top: 524px;
-    margin-left: 50px;
-}
-
-.pick-black{
-    opacity: 0;
-    display: grid;
-    grid-template-columns: 75px 75px 75px 75px;
-    grid-template-rows: 75px;
-    column-gap: 0px;
-    row-gap: 0px;
-}
-
-.available{
-    opacity: 100%;
-}
-
-.gray{
-    background-color: gray;
-}
-.gray :hover{
-    background-color: rgb(189, 199, 72);
-}
-
-.white{
-    background-color: rgb(238,238,210);
-}
-
-.black{
-    background-color: rgb(118,150,86);
-}
-
 .scoreboard{
     display: flex;
     justify-content: center;
@@ -82,27 +18,4 @@ div img{
     font-family: 'Courier New', Courier, monospace;
     font-size: 50px;
     margin: 15px;
-}
-
-.box{
-    position: relative;
-}
-
-.piece{
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-.possible{
-    opacity: 20%;
-}
-
-.target{
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    opacity: 20%;
 }
