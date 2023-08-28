@@ -1,6 +1,8 @@
 export class PositionManager{
-    constructor(chessPieces){
+    constructor(chessPieces, turnCtr){
         this._chessPieces = chessPieces;
+        this._turnCtr = turnCtr;
+
         this._checkEmpty = (x, y) => {
             return this._chessPieces[x][y] === 0 ? true : false;
         }
@@ -168,6 +170,12 @@ export class PositionManager{
                     if(this._checkColor(x + 1, y - 1, 'white') && !this._checkKing([x, y], [x+1, y-1], piece.color)){
                         piece.addPossibleMoves([x + 1, y - 1]);
                     }
+                    if(x === 4 && this._checkColor(x, y + 1, 'white') && this._chessPieces[x][y+1].enPassant === this._turnCtr[0] && !this._checkKing([x, y], [x+1, y+1], piece.color)){
+                        piece.addPossibleMoves([x + 1, y + 1]);
+                    }
+                    if(x === 4 && this._checkColor(x, y - 1, 'white') && this._chessPieces[x][y-1].enPassant === this._turnCtr[0] && !this._checkKing([x, y], [x+1, y-1], piece.color)){
+                        piece.addPossibleMoves([x + 1, y - 1]);
+                    }
                 }
             }
             else if(piece.color === 'white'){
@@ -193,6 +201,12 @@ export class PositionManager{
                         piece.addPossibleMoves([x - 1, y + 1]);
                     }
                     if(this._checkColor(x - 1, y - 1, 'black') && !this._checkKing([x, y], [x-1, y-1], piece.color)){
+                        piece.addPossibleMoves([x - 1, y - 1]);
+                    }
+                    if(x === 3 && this._checkColor(x, y + 1, 'black') && this._chessPieces[x][y+1].enPassant === this._turnCtr[0] && !this._checkKing([x, y], [x-1, y+1], piece.color)){
+                        piece.addPossibleMoves([x - 1, y + 1]);
+                    }
+                    if(x === 3 && this._checkColor(x, y - 1, 'black') && this._chessPieces[x][y-1].enPassant === this._turnCtr[0] && !this._checkKing([x, y], [x-1, y-1], piece.color)){
                         piece.addPossibleMoves([x - 1, y - 1]);
                     }
                 }

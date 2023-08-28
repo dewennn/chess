@@ -40,6 +40,13 @@ export class Pawn extends ChessPiece{
         super(color, position);
         this._name = 'Pawn';
         this._firstMove = true;
+        this._enPassant;
+    }
+    set enPassant(value){
+        this._enPassant = value;
+    }
+    get enPassant(){
+        return this._enPassant;
     }
     get firstMove(){
         return this._firstMove;

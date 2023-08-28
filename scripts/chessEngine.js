@@ -9,11 +9,13 @@ export class ChessEngine{
 
         this._chessPieces = chessPieces;
         this._display = display;
-        this._positionManager = new PositionManager(this._chessPieces);
 
         this._turn = "white";
+        this._turnCtr = [0];
         this._startPosition;
         this._picked = false;
+
+        this._positionManager = new PositionManager(this._chessPieces, this._turnCtr);
 
         this._resetpick = () => {
             this._startPosition = null;
@@ -116,6 +118,8 @@ export class ChessEngine{
                 });
 
                 if(validMove === true){
+                    this._turnCtr[0]++;
+
                     document.querySelector(`.box${this._startPosition[0]}${this._startPosition[1]}`).classList.remove('selected');
                     this._display.clearPossibleMoves(pieceToMove);
                     this._display.clearPosition();
@@ -152,6 +156,21 @@ export class ChessEngine{
                         }
 
                         pieceToMove.firstMoveFalse();
+                    }
+
+                    if(pieceToMove.name === 'Pawn' && (this._startPosition[0]-x == 2 || this._startPosition[0]-x == -2)){
+                        pieceToMove.enPassant = this._turnCtr[0];
+                    }
+
+                    if(pieceToMove.name === 'Pawn' && this._chessPieces[x][y] === 0 && this._startPosition[1] !== y){
+                        if(pieceToMove.color === 'black'){
+                            document.querySelector(`.dead${this._chessPieces[x-1][y].color}`).innerHTML += `<div><img src="source/${this._chessPieces[x-1][y].color}${this._chessPieces[x-1][y].name}.png" alt=""></div>`;
+                            this._chessPieces[x-1][y] = 0;
+                        }
+                        else if(pieceToMove.color === 'white'){
+                            document.querySelector(`.dead${this._chessPieces[x+1][y].color}`).innerHTML += `<div><img src="source/${this._chessPieces[x+1][y].color}${this._chessPieces[x+1][y].name}.png" alt=""></div>`;
+                            this._chessPieces[x+1][y] = 0;
+                        }
                     }
                     
                     if(this._chessPieces[x][y] !== 0){
