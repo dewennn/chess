@@ -75,26 +75,29 @@ export class ChessEngine{
             const [x, y] = [Number(position[0]), Number(position[1])];
             
             if(this._promotion === true){
-                let upgrade;
-                if(x === 8 && y === 0){
-                    upgrade = new Queen(this._turn, this._promotionCoord);
-                }
-                else if(x == 8 && y == 1){
-                    upgrade = new Rook(this._turn, this._promotionCoord);
-                }
-                else if(x == 8 && y == 2){
-                    upgrade = new Bishop(this._turn, this._promotionCoord);
-                }
-                else if(x == 8 && y == 3){
-                    upgrade = new Horse(this._turn, this._promotionCoord);
-                }
+                const forPromotion = this._turn === 'white' ? 8 : 9;
+                if(x === forPromotion){
+                    let upgrade;
+                    if(y === 0){
+                        upgrade = new Queen(this._turn, this._promotionCoord);
+                    }
+                    else if(y == 1){
+                        upgrade = new Rook(this._turn, this._promotionCoord);
+                    }
+                    else if(y == 2){
+                        upgrade = new Bishop(this._turn, this._promotionCoord);
+                    }
+                    else if(y == 3){
+                        upgrade = new Horse(this._turn, this._promotionCoord);
+                    }
 
-                this._chessPieces[this._promotionCoord[0]][this._promotionCoord[1]] = upgrade;
-                this._promotionCoord = null;
-                this._promotion = false;
-                document.querySelector(`.pick-${this._turn}`).classList.remove('available');
+                    this._chessPieces[this._promotionCoord[0]][this._promotionCoord[1]] = upgrade;
+                    this._promotionCoord = null;
+                    this._promotion = false;
+                    document.querySelector(`.pick-${this._turn}`).classList.remove('available');
 
-                this._checkNReset();
+                    this._checkNReset();
+                }
             }
             else if(this._picked == false && this._chessPieces[x][y] !== 0 && this._chessPieces[x][y].color === this._turn && this._game === true && this._promotion === false){
                 this._pickThis([x, y]);
