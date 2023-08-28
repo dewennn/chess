@@ -36,11 +36,11 @@ export class ChessPiece{
 }
 
 export class Pawn extends ChessPiece{
-    constructor(color, position){
+    constructor(color, position, firstMove, enPassant){
         super(color, position);
         this._name = 'Pawn';
-        this._firstMove = true;
-        this._enPassant;
+        this._firstMove = firstMove;
+        this._enPassant = enPassant;
     }
     set enPassant(value){
         this._enPassant = value;
@@ -73,10 +73,10 @@ export class Bishop extends ChessPiece{
 }
 
 export class Rook extends ChessPiece{
-    constructor(color, position){
+    constructor(color, position, firstMove){
         super(color, position);
         this._name = 'Rook';
-        this._firstMove = true;
+        this._firstMove = firstMove;
     }
     get firstMove(){
         return this._firstMove;
@@ -96,10 +96,10 @@ export class Queen extends ChessPiece{
 }
 
 export class King extends ChessPiece{
-    constructor(color, position){
+    constructor(color, position, firstMove){
         super(color, position);
         this._name = 'King';
-        this._firstMove = true;
+        this._firstMove = firstMove;
     }
     get firstMove(){
         return this._firstMove;

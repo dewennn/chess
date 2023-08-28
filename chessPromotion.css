@@ -32,6 +32,6 @@
 .gray{
     background-color: gray;
 }
-.gray :hover{
+.gray:hover{
     background-color: rgb(189, 199, 72);
 }
